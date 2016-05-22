@@ -1,7 +1,7 @@
 var gui_widget;
 
 var Controlador = function(){
-  this.color = [ 0 , 128 , 255 ];
+  this.color = "#ffae23";
 };
 
 var scene = new THREE.Scene();

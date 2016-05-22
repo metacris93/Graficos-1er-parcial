@@ -46,7 +46,7 @@
       $(function (){
           renderer.setSize(window.innerWidth, window.innerHeight);
           renderer.setClearColor( 'rgb(186,228,218)' );
-
+          $('#render').append(renderer.domElement);
           control_orbital = new THREE.OrbitControls(camara , renderer.domElement);
           control_orbital.addEventListener( 'change', renderizar );
           //renderer.shadowMapEnabled = true;
@@ -102,15 +102,14 @@
 
   				agregar_piramide();
 
-          animacion();
-
-          $('#render').append(renderer.domElement);
-          renderer.render(scene , camara);
-          /*var controlador = new Controlador();
+          var controlador = new Controlador();
           gui_widget = new dat.GUI();
-          gui_widget.addColor(controlador , 'Color');*/
+          var control = gui_widget.addColor(controlador , 'color').listen();
+          control.onChange(function(value){
+              plano.material.color.setHex( value.replace("#", "0x") );;
+          });
 
-
+          animacion();
       });
 
       window.addEventListener( 'resize', function () {
