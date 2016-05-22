@@ -4,6 +4,13 @@
 		<title> three.js webgl - ShadowMesh </title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+	  <script src="js/three.min.js" type="text/javascript"></script>
+	  <script src="js/controls/OrbitControls.js" type="text/javascript"></script>
+	  <script src='js/libs/dat.gui.min.js'></script>
+	  <script src='js/libs/stats.min.js'></script>
+	  <script type="text/javascript" src="variables.js"></script>
+		<script src="js/objects/ShadowMesh.js"></script>
 		<style>
 			body {
 				background-color: rgb(0, 0, 0);
@@ -23,9 +30,7 @@
 
 		<div id="container"></div>
 		<input id="lightButton" type="button" value="Cambiar a Ajedrez" onclick="lightButtonHandler()">
-
-		<script src="three.js"></script>
-		<script src="js/objects/ShadowMesh.js"></script>
+		<script type="text/javascript" src="funciones.js"></script>
 		<script>
 
 			var SCREEN_WIDTH = window.innerWidth;
@@ -63,11 +68,20 @@
 			init();
 			animate();
 
+			function renderizar(){
+        requestAnimationFrame( renderizar );
+        renderer.render(scene, camera);
+      }
+
 			function init() {
 
 				renderer.setClearColor( 'rgb(186,228,218)' ); //color de fondo
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+
+				control_orbital = new THREE.OrbitControls(camera , renderer.domElement);
+				control_orbital.addEventListener( 'change', renderizar );
+
 				document.getElementById( "container" ).appendChild( renderer.domElement );
 				window.addEventListener( 'resize' , onWindowResize, false );
 
@@ -93,7 +107,7 @@
 				arrowHelper1 = new THREE.ArrowHelper( arrowDirection, arrowPosition1, 0.9, 0xffff00, 0.25, 0.08 );
 				scene.add( arrowHelper1 );
 				arrowHelper1.visible=false;
-				
+
 				/*
 				arrowPosition2.copy( sunLight.position ).add( new THREE.Vector3( 0, 0.2, 0 ) );
 				arrowHelper2 = new THREE.ArrowHelper( arrowDirection, arrowPosition2, 0.9, 0xffff00, 0.25, 0.08 );
@@ -104,7 +118,7 @@
 				scene.add( arrowHelper3 );
 				*/
 
-				// LIGHTBULB
+				// Iluminacion
 				var lightSphereGeometry = new THREE.SphereGeometry( 0.09 );
 				var lightSphereMaterial = new THREE.MeshBasicMaterial( { color: 'rgb(255,255,255)' } );
 				lightSphere = new THREE.Mesh( lightSphereGeometry, lightSphereMaterial );
@@ -116,64 +130,18 @@
 				lightHolder = new THREE.Mesh( lightHolderGeometry, lightHolderMaterial );
 				scene.add( lightHolder );
 				lightHolder.visible = false;
+				// Fin de iluminacion
+				agregar_plano();
 
-				// GROUND
-				var groundGeometry = new THREE.BoxGeometry( 30, 0.01, 40 );
-				var groundMaterial = new THREE.MeshLambertMaterial( { color: 'rgb(0,130,0)' } );//color del piso con luces diercc
-				groundMesh = new THREE.Mesh( groundGeometry, groundMaterial );
-				groundMesh.position.y = 0.0; //this value must be slightly lower than the planeConstant (0.01) parameter above
-				scene.add( groundMesh );
+				agregar_cubo();
 
-				// RED CUBE and CUBE's SHADOW
-				var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
-				var cubeMaterial = new THREE.MeshLambertMaterial( { color: 'rgb(255,0,0)', emissive: 0x200000 } );
-				cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
-				cube.position.z = 0;
-				scene.add( cube );
+				agregar_cilindro();
 
-				cubeShadow = new THREE.ShadowMesh( cube );
-				scene.add( cubeShadow );
+				agregar_toroide();
 
-				// BLUE CYLINDER and CYLINDER's SHADOW
-				var cylinderGeometry = new THREE.CylinderGeometry( 0.3, 0.3, 2 );
-				var cylinderMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(0,0,255)', emissive: 0x000020 } );
-				cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
-				cylinder.position.z = - 2.5;
-				scene.add( cylinder );
+				agregar_esfera();
 
-				cylinderShadow = new THREE.ShadowMesh( cylinder );
-				scene.add( cylinderShadow );
-
-				// MAGENTA TORUS and TORUS' SHADOW
-				var torusGeometry = new THREE.TorusGeometry( 1, 0.2, 10, 16, TWO_PI );
-				var torusMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,0,255)', emissive: 0x200020 } );
-				torus = new THREE.Mesh( torusGeometry, torusMaterial );
-				torus.position.z = - 6;
-				scene.add( torus );
-
-				torusShadow = new THREE.ShadowMesh( torus );
-				scene.add( torusShadow );
-
-				// WHITE SPHERE and SPHERE'S SHADOW
-				var sphereGeometry = new THREE.SphereGeometry( 0.5, 20, 10 );
-				var sphereMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,255)', emissive: 0x222222 } );
-				sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-				sphere.position.set( 4, 2, 2 );
-				scene.add( sphere );
-
-				sphereShadow = new THREE.ShadowMesh( sphere );
-				scene.add( sphereShadow );
-
-				// YELLOW PYRAMID and PYRAMID'S SHADOW
-				var pyramidGeometry = new THREE.CylinderGeometry( 0, 2, 2, 3 ); //(niidea,radio,altura,numero de caras laterales)
-				var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,0)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
-				
-				pyramid = new THREE.Mesh( pyramidGeometry, pyramidMaterial );
-				pyramid.position.set( - 4, 1.5, 2 );
-				scene.add( pyramid );
-
-				pyramidShadow = new THREE.ShadowMesh( pyramid );
-				scene.add( pyramidShadow );
+				agregar_piramide();
 
 			}
 
@@ -205,7 +173,7 @@
 				torus.position.x=5;
 				torus.position.y=3;
 
-				/*				
+				/*
 				if ( horizontalAngle > TWO_PI )
 					horizontalAngle -= TWO_PI;
 				cube.position.x = Math.sin( horizontalAngle ) * 4;

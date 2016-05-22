@@ -13,6 +13,8 @@
     <script src="js/three.min.js" type="text/javascript"></script>
     <script src="js/controls/OrbitControls.js" type="text/javascript"></script>
     <script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/Detector.js"></script>
+    <script src='js/libs/dat.gui.min.js'></script>
     <script type="text/javascript">
         /*
         Creando la funcionalidad
@@ -21,7 +23,7 @@
         cargar_modelo(): construye los modelos o las especificaciones de los modelos
         render_modelo(): renderiza y modifica elementos graficos
         */
-
+        if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
         // render dentro del div
         var Render = new THREE.WebGLRenderer( { antialias: true } );
         //escenario
@@ -72,12 +74,12 @@
             crear_plano();
             document.getElementById('render').appendChild(Render.domElement);
             crear_plano();
-            Camara.position.z = 50;
+            camera.position.set( -20, 25, 50 );
         }
         function crear_plano(){
             var loader = new THREE.TextureLoader();
             var textura = loader.load(// resource URL
-                      	'http://www.fotoseimagenes.net/imagenes/full/0/0/6/tablero-de-ajedrez-5.jpg',
+                      	'images/ajedrez.png',
                       	// Function when resource is loaded
                       	function ( texture ) {
                       		  var geometria_plano = new THREE.PlaneBufferGeometry(200,200);
