@@ -24,9 +24,9 @@ var frameTime = 0;
 
 var clock = new THREE.Clock();
 
-var verticalAngle = 0;
+var AnguloEnVertical = 0;
 
-var horizontalAngle = 0;
+var AnguloEnHorizontal = 0;
 
 var normalVector = new THREE.Vector3( 0, 1, 0 );
 

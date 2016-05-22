@@ -1,7 +1,7 @@
 function agregar_piramide(){
   // Piramide 
 	var pyramidGeometry = new THREE.CylinderGeometry( 0, 2, 2, 3 ); //(niidea,radio,altura,numero de caras laterales)
-	var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,0)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
+        var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,0)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
 	//sombra piramide
 	pyramid = new THREE.Mesh( pyramidGeometry, pyramidMaterial );
 	pyramid.position.set( - 4, 1.5, 2 );
@@ -61,7 +61,7 @@ function agregar_cubo(){
 function agregar_plano(){
   // Plano
   var groundGeometry = new THREE.BoxGeometry( 30, 0.01, 40 );
-  var groundMaterial = new THREE.MeshLambertMaterial( { color: 'rgb(0,130,0)' } );//color del piso con luces diercc
+  var groundMaterial = new THREE.MeshLambertMaterial( { color: 'rgb(0,130,0)' } );
   groundMesh = new THREE.Mesh( groundGeometry, groundMaterial );
   groundMesh.position.y = 0.0; //value must be slightly lower than the planeConstant (0.01) parameter above
   scene.add( groundMesh );
@@ -84,7 +84,7 @@ function animacion() {
 
   pyramid.rotation.y += 0.9 * frameTime;
 
-  horizontalAngle += 0.5 * frameTime;
+  AnguloEnHorizontal += 0.5 * frameTime;
 
   cube.position.x=0.5;
   cube.position.y=4;
