@@ -63,34 +63,16 @@
           camara.lookAt(scene.position);
 
           //iluminacion
-          sunLight.position.set( -30, 50, - 2 );
-          sunLight.lookAt( scene.position );
-  				scene.add( sunLight );
-          lightPosition4D.x = sunLight.position.x;
-  				lightPosition4D.y = sunLight.position.y;
-  				lightPosition4D.z = sunLight.position.z;
-  				lightPosition4D.w = 0.001; // must be slightly greater than 0, due to 0 causing matrixInverse errors
+          FuenteDeLuz.position.set( -30, 50, - 2 );
+          FuenteDeLuz.lookAt( scene.position );
+  				scene.add( FuenteDeLuz );
+          PosicionLuz.x = FuenteDeLuz.position.x;
+  				PosicionLuz.y = FuenteDeLuz.position.y;
+  				PosicionLuz.z = FuenteDeLuz.position.z;
+  				PosicionLuz.w = 0.001; //valor debe ser cercano a cero para mejores resultados, pero no cero, x problemas de división para cero.
 
-          arrowDirection.subVectors( scene.position, sunLight.position ).normalize();
+          // Fin de iluminacion
 
-  				arrowPosition1.copy( sunLight.position );
-  				arrowHelper1 = new THREE.ArrowHelper( arrowDirection, arrowPosition1, 0.9, 0xffff00, 0.25, 0.08 );
-  				scene.add( arrowHelper1 );
-  				arrowHelper1.visible=false;
-
-          // Iluminacion
-  				var lightSphereGeometry = new THREE.SphereGeometry( 0.09 );
-  				var lightSphereMaterial = new THREE.MeshBasicMaterial( { color: 'rgb(255,255,255)' } );
-  				lightSphere = new THREE.Mesh( lightSphereGeometry, lightSphereMaterial );
-  				scene.add( lightSphere );
-  				lightSphere.visible = false;
-
-  				var lightHolderGeometry = new THREE.CylinderGeometry( 0.05, 0.05, 0.13 );
-  				var lightHolderMaterial = new THREE.MeshBasicMaterial( { color: 'rgb(75,75,75)' } );
-  				lightHolder = new THREE.Mesh( lightHolderGeometry, lightHolderMaterial );
-  				scene.add( lightHolder );
-  				lightHolder.visible = false;
-  				// Fin de iluminacion
 
   				agregar_cubo();
 

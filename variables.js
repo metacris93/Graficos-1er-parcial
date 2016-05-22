@@ -14,17 +14,9 @@ var plano;
 
 var control_orbital;
 
-var sunLight = new THREE.DirectionalLight( 'rgb(255,255,255)', 1 );
+var FuenteDeLuz = new THREE.DirectionalLight( 'rgb(255,255,255)', 1 );
 
-var lightPosition4D = new THREE.Vector4();
-
-var arrowDirection = new THREE.Vector3();
-
-var arrowPosition1 = new THREE.Vector3();
-
-var arrowPosition2 = new THREE.Vector3();
-
-var arrowPosition3 = new THREE.Vector3();
+var PosicionLuz = new THREE.Vector4();
 
 var TWO_PI = Math.PI * 2;
 
