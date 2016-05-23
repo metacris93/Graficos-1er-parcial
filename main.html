@@ -24,62 +24,6 @@
   <body>
       <div id="render"></div>
       <script type="text/javascript">
-      /*
-      * En esta funcion se crea el plano, enviando como parametros el alto, ancho y la imagen.
-      * En caso de que la ruta de la imagen este vacio, se va crear un plano con un color predeterminado
-      */
-      function crear_plano(ancho , alto , imagen){
-          if(imagen.length != 0){//si no se envia la ruta de la imagen
-
-          }else{
-            /*
-            var geometria = new THREE.PlaneBufferGeometry(ancho, alto,1,1);
-            var material = new THREE.MeshBasicMaterial({color: 'rgb(0,130,0)'});
-            plano = new THREE.Mesh( geometria, material );
-            plano.receiveShadow = true;*/
-
-            var x = document.createElement( "canvas" );
-        var xc = x.getContext("2d");
-        x.width = x.height = 100;
-        xc.fillStyle = "#fff";
-        xc.fillRect(0, 0, 100, 100);
-        xc.fillStyle = "#000";
-        xc.fillRect(0, 0, 50, 50);
-        xc.fillStyle = "#000";
-        xc.fillRect(25, 25, 25, 25);
-        xc.fillStyle = "#000";
-        xc.fillRect(50, 50, 50, 50);
-        xc.fillStyle = "#000";
-        xc.fillRect(75, 75, 25, 25);
-
-        var texture = new THREE.CanvasTexture( x );
-        texture.repeat.set( 10, 10 );
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-
-        var material = new THREE.MeshBasicMaterial( { map: texture } );
-
-        geometria = new THREE.PlaneBufferGeometry( ancho, alto, 1, 1 );
-
-        plano = new THREE.Mesh( geometria, material );
-        plano.receiveShadow=true;
-       /* mesh.position.set( 0, FLOOR, 0 );
-        mesh.rotation.x = - Math.PI / 2;
-        mesh.scale.set( 10, 10, 10 );
-        scene.add( mesh );*/
-
-
-        
-
-
-
-          }
-      }
-
-      function renderizar(){
-        requestAnimationFrame( renderizar );
-        renderer.render(scene, camara);
-      }
 
       $(function (){
           renderer.setSize(window.innerWidth, window.innerHeight);
@@ -112,8 +56,6 @@
   				PosicionLuz.w = 0.001; //valor debe ser cercano a cero para mejores resultados, pero no cero, x problemas de división para cero.
 
           // Fin de iluminacion
-
-
   				agregar_cubo();
 
   				agregar_cilindro();
@@ -124,12 +66,37 @@
 
   				agregar_piramide();
 
-          var controlador = new Controlador();
           gui_widget = new dat.GUI();
           var control = gui_widget.addColor(controlador , 'color').listen();
           control.onChange(function(value){
               plano.material.color.setHex( value.replace("#", "0x") );;
           });
+
+          /*var controlEsfera =*/ gui_widget.add(controlador , 'rotacionEsfera' , 0 , 4);
+          /*var controlToroide =*/ gui_widget.add(controlador , 'rotacionToroide' , 0 , 4);
+          /*var controlCubo = */gui_widget.add(controlador , 'rotacionCubo' , 0 , 4);
+          /*var controlCilindro =*/ gui_widget.add(controlador , 'rotacionCilindro' , 0 , 4);
+          /*var controlPiramide =*/ gui_widget.add(controlador , 'rotacionPiramide' , 0 , 4);
+
+        /*  controlEsfera.onChange(function (value){
+
+          });
+
+          controlToroide.onChange(function (value){
+
+          });
+
+          controlCubo.onChange(function (value){
+
+          });
+
+          controlCilindro.onChange(function (value){
+
+          });
+
+          controlPiramide.onChange(function (value){
+
+          });*/
 
           animacion();
       });

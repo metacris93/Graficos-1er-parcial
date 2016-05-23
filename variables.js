@@ -2,6 +2,11 @@ var gui_widget;
 
 var Controlador = function(){
   this.color = "#ffae23";
+  this.rotacionToroide = 0.5;
+  this.rotacionPiramide = 0.5;
+  this.rotacionCubo = 0.5;
+  this.rotacionCilindro = 0.5;
+  this.rotacionEsfera = 0.5;
 };
 
 var scene = new THREE.Scene();
@@ -33,3 +38,5 @@ var normalVector = new THREE.Vector3( 0, 1, 0 );
 var planeConstant = 0.01;
 
 var groundPlane = new THREE.Plane( normalVector, planeConstant );
+
+var controlador = new Controlador();

@@ -1,5 +1,52 @@
+/*
+* En esta funcion se crea el plano, enviando como parametros el alto, ancho y la imagen.
+* En caso de que la ruta de la imagen este vacio, se va crear un plano idéntico a un tablero de ajedrez
+*/
+function crear_plano(ancho , alto , imagen){
+		if(imagen.length != 0){//si no se envia la ruta de la imagen
+
+		}else{
+			/*
+			var geometria = new THREE.PlaneBufferGeometry(ancho, alto,1,1);
+			var material = new THREE.MeshBasicMaterial({color: 'rgb(0,130,0)'});
+			plano = new THREE.Mesh( geometria, material );
+			plano.receiveShadow = true;*/
+
+			var x = document.createElement( "canvas" );
+			var xc = x.getContext("2d");
+			x.width = x.height = 100;
+			xc.fillStyle = "#fff";
+			xc.fillRect(0, 0, 100, 100);
+			xc.fillStyle = "#000";
+			xc.fillRect(0, 0, 50, 50);
+			xc.fillStyle = "#000";
+			xc.fillRect(25, 25, 25, 25);
+			xc.fillStyle = "#000";
+			xc.fillRect(50, 50, 50, 50);
+			xc.fillStyle = "#000";
+			xc.fillRect(75, 75, 25, 25);
+
+			var texture = new THREE.CanvasTexture( x );
+			texture.repeat.set( 10, 10 );
+			texture.wrapS = THREE.RepeatWrapping;
+			texture.wrapT = THREE.RepeatWrapping;
+
+			var material = new THREE.MeshBasicMaterial( { map: texture } );
+
+			geometria = new THREE.PlaneBufferGeometry( ancho, alto, 1, 1 );
+
+			plano = new THREE.Mesh( geometria, material );
+			plano.receiveShadow=true;
+		}
+}
+
+function renderizar(){
+	requestAnimationFrame( renderizar );
+	renderer.render(scene, camara);
+}
+
 function agregar_piramide(){
-  // Piramide 
+  // Piramide
 	var pyramidGeometry = new THREE.CylinderGeometry( 0, 1, 2, 3); //(niidea,radio,altura,numero de caras laterales)
         var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,0)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
 	//sombra piramide
@@ -29,7 +76,7 @@ function agregar_toroide(){
   torus = new THREE.Mesh( torusGeometry, torusMaterial );
   torus.position.set(2, 2, 2);
   scene.add( torus );
-	//sombra toroide	
+	//sombra toroide
   torusShadow = new THREE.ShadowMesh( torus );
   scene.add( torusShadow );
 }
@@ -47,7 +94,7 @@ function agregar_cilindro(){
 }
 
 function agregar_cubo(){
-  // cubo 
+  // cubo
   var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
   var cubeMaterial = new THREE.MeshLambertMaterial( { color: 'rgb(255,0,0)', emissive: 0x200000 } );
   cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
@@ -74,15 +121,15 @@ function animacion() {
   frameTime = clock.getDelta();
 
   //cube.rotation.x += 1.0 * frameTime;
-  cube.rotation.y += 1.0 * frameTime;
+  cube.rotation.y += controlador.rotacionCubo * frameTime;
 
-  cylinder.rotation.y += 1.0 * frameTime;
-  cylinder.rotation.z -= 1.0 * frameTime;
+  cylinder.rotation.y += controlador.rotacionCilindro * frameTime;
+  cylinder.rotation.z -= controlador.rotacionCilindro * frameTime;
 
   //torus.rotation.x -= 1.0 * frameTime;
-  torus.rotation.y -= 1.0 * frameTime;
+  torus.rotation.y -= controlador.rotacionToroide * frameTime;
 
-  pyramid.rotation.y += 0.9 * frameTime;
+  pyramid.rotation.y += controlador.rotacionPiramide * frameTime;
 
   AnguloEnHorizontal += 0.5 * frameTime;
 
