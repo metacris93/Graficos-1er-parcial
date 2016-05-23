@@ -7,6 +7,7 @@
   <script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
   <script src="js/three.min.js" type="text/javascript"></script>
   <script src="js/controls/OrbitControls.js" type="text/javascript"></script>
+  <script src="js/controls/FlyControls.js"></script>
   <script src='js/libs/dat.gui.min.js'></script>
   <script src='js/libs/stats.min.js'></script>
   <script src="js/objects/ShadowMesh.js"></script>
@@ -31,10 +32,47 @@
           if(imagen.length != 0){//si no se envia la ruta de la imagen
 
           }else{
+            /*
             var geometria = new THREE.PlaneBufferGeometry(ancho, alto,1,1);
             var material = new THREE.MeshBasicMaterial({color: 'rgb(0,130,0)'});
             plano = new THREE.Mesh( geometria, material );
-            plano.receiveShadow = true;
+            plano.receiveShadow = true;*/
+
+            var x = document.createElement( "canvas" );
+        var xc = x.getContext("2d");
+        x.width = x.height = 100;
+        xc.fillStyle = "#fff";
+        xc.fillRect(0, 0, 100, 100);
+        xc.fillStyle = "#000";
+        xc.fillRect(0, 0, 50, 50);
+        xc.fillStyle = "#000";
+        xc.fillRect(25, 25, 25, 25);
+        xc.fillStyle = "#000";
+        xc.fillRect(50, 50, 50, 50);
+        xc.fillStyle = "#000";
+        xc.fillRect(75, 75, 25, 25);
+
+        var texture = new THREE.CanvasTexture( x );
+        texture.repeat.set( 10, 10 );
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+
+        var material = new THREE.MeshBasicMaterial( { map: texture } );
+
+        geometria = new THREE.PlaneBufferGeometry( ancho, alto, 1, 1 );
+
+        plano = new THREE.Mesh( geometria, material );
+        plano.receiveShadow=true;
+       /* mesh.position.set( 0, FLOOR, 0 );
+        mesh.rotation.x = - Math.PI / 2;
+        mesh.scale.set( 10, 10, 10 );
+        scene.add( mesh );*/
+
+
+        
+
+
+
           }
       }
 
@@ -50,11 +88,12 @@
           control_orbital = new THREE.OrbitControls(camara , renderer.domElement);
           control_orbital.addEventListener( 'change', renderizar );
           //renderer.shadowMapEnabled = true;
-          crear_plano(15, 15,"");
+          crear_plano(80, 80,"");
           plano.rotation.x=-0.5*Math.PI;
           plano.position.x = 0;
           plano.position.y = -1 ;
           plano.position.z = 0;
+          plano.scale.set( 0.3, 0.3, 0.3 );
           scene.add( plano );
           // se ubica la camara en el centro de la escena
           camara.position.x = -5;//-30

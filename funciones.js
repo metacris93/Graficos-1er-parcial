@@ -1,6 +1,6 @@
 function agregar_piramide(){
   // Piramide 
-	var pyramidGeometry = new THREE.CylinderGeometry( 0, 2, 2, 3 ); //(niidea,radio,altura,numero de caras laterales)
+	var pyramidGeometry = new THREE.CylinderGeometry( 0, 1, 2, 3); //(niidea,radio,altura,numero de caras laterales)
         var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,0)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
 	//sombra piramide
 	pyramid = new THREE.Mesh( pyramidGeometry, pyramidMaterial );
@@ -73,13 +73,13 @@ function animacion() {
 
   frameTime = clock.getDelta();
 
-  cube.rotation.x += 1.0 * frameTime;
+  //cube.rotation.x += 1.0 * frameTime;
   cube.rotation.y += 1.0 * frameTime;
 
   cylinder.rotation.y += 1.0 * frameTime;
   cylinder.rotation.z -= 1.0 * frameTime;
 
-  torus.rotation.x -= 1.0 * frameTime;
+  //torus.rotation.x -= 1.0 * frameTime;
   torus.rotation.y -= 1.0 * frameTime;
 
   pyramid.rotation.y += 0.9 * frameTime;
