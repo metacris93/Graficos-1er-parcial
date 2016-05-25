@@ -5,13 +5,13 @@
 function crear_plano(ancho , alto , imagen){
 		if(imagen.length != 0){//si no se envia la ruta de la imagen
 
-		}else{
-			/*
-			var geometria = new THREE.PlaneBufferGeometry(ancho, alto,1,1);
-			var material = new THREE.MeshBasicMaterial({color: 'rgb(0,130,0)'});
-			plano = new THREE.Mesh( geometria, material );
-			plano.receiveShadow = true;*/
-
+		}else {
+			//Se crea plano simple
+			var geometriasimple = new THREE.PlaneBufferGeometry(ancho, alto,1,1);
+			var materialsimple = new THREE.MeshBasicMaterial({color: 'rgb(0,130,0)'});
+			planosimple = new THREE.Mesh( geometriasimple, materialsimple );
+			planosimple.receiveShadow = true;
+			//se crea plano ajedrez
 			var x = document.createElement( "canvas" );
 			var xc = x.getContext("2d");
 			x.width = x.height = 100;
@@ -38,6 +38,7 @@ function crear_plano(ancho , alto , imagen){
 			plano = new THREE.Mesh( geometria, material );
 			plano.receiveShadow=true;
 		}
+			
 }
 
 function renderizar(){
@@ -47,7 +48,7 @@ function renderizar(){
 
 function agregar_piramide(){
   // Piramide
-	var pyramidGeometry = new THREE.CylinderGeometry( 0, 1, 2, 3); //(niidea,radio,altura,numero de caras laterales)
+	var pyramidGeometry = new THREE.CylinderGeometry( 0, 1, 2, 3); //(desconocido,radio,altura,numero de caras laterales)
         var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,0)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
 	//sombra piramide
 	pyramid = new THREE.Mesh( pyramidGeometry, pyramidMaterial );

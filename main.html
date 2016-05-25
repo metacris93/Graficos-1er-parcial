@@ -38,8 +38,15 @@
           plano.position.y = -1 ;
           plano.position.z = 0;
           plano.scale.set( 0.3, 0.3, 0.3 );
+
+	  planosimple.rotation.x=-0.5*Math.PI;
+          planosimple.position.x = 0;
+          planosimple.position.y = -1 ;
+          planosimple.position.z = 0;
+          planosimple.scale.set( 0.3, 0.3, 0.3 );
           scene.add( plano );
-          // se ubica la camara en el centro de la escena
+          scene.add(planosimple);
+	// se ubica la camara en el centro de la escena
           camara.position.x = -5;//-30
           camara.position.y = 5;
           camara.position.z = 0;
@@ -69,14 +76,32 @@
           gui_widget = new dat.GUI();
           var control = gui_widget.addColor(controlador , 'color').listen();
           control.onChange(function(value){
-              plano.material.color.setHex( value.replace("#", "0x") );;
+              plano.material.color.setHex( value.replace("#", "0x") );
+		planosimple.material.color.setHex( value.replace("#", "0x") );
           });
+
+ 	var toggleTablero=gui_widget.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
+	toggleTablero.onChange(function(value){
+	
+	if(value=="Simple")
+		plano.visible=false;
+	else
+		plano.visible=true;	
+	});
+
+	/*var cubeMaterial = gui.add( parameters, 'material', [ "Basic", "Lambert", "Phong", "Wireframe" ] ).name('Material Type').listen();
+	cubeMaterial.onChange(function(value) 
+	{   updateCube();   });
+
+	*/
+ 
 
           /*var controlEsfera =*/ gui_widget.add(controlador , 'rotacionEsfera' , 0 , 4);
           /*var controlToroide =*/ gui_widget.add(controlador , 'rotacionToroide' , 0 , 4);
           /*var controlCubo = */gui_widget.add(controlador , 'rotacionCubo' , 0 , 4);
           /*var controlCilindro =*/ gui_widget.add(controlador , 'rotacionCilindro' , 0 , 4);
           /*var controlPiramide =*/ gui_widget.add(controlador , 'rotacionPiramide' , 0 , 4);
+				    	
 
         /*  controlEsfera.onChange(function (value){
 

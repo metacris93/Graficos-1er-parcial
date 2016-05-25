@@ -7,6 +7,7 @@ var Controlador = function(){
   this.rotacionCubo = 0.5;
   this.rotacionCilindro = 0.5;
   this.rotacionEsfera = 0.5;
+  this.Piso="Ajedrez";
 };
 
 var scene = new THREE.Scene();
@@ -16,6 +17,8 @@ var camara = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHe
 var renderer = new THREE.WebGLRenderer();
 
 var plano;
+
+var planosimple;
 
 var control_orbital;
 
