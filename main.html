@@ -39,7 +39,7 @@
           plano.position.z = 0;
           plano.scale.set( 0.3, 0.3, 0.3 );
 
-	  planosimple.rotation.x=-0.5*Math.PI;
+	        planosimple.rotation.x=-0.5*Math.PI;
           planosimple.position.x = 0;
           planosimple.position.y = -1 ;
           planosimple.position.z = 0;
@@ -77,51 +77,22 @@
           var control = gui_widget.addColor(controlador , 'color').listen();
           control.onChange(function(value){
               plano.material.color.setHex( value.replace("#", "0x") );
-		planosimple.material.color.setHex( value.replace("#", "0x") );
+		          planosimple.material.color.setHex( value.replace("#", "0x") );
           });
 
- 	var toggleTablero=gui_widget.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
-	toggleTablero.onChange(function(value){
-	
-	if(value=="Simple")
-		plano.visible=false;
-	else
-		plano.visible=true;	
-	});
+         	var toggleTablero=gui_widget.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
+        	toggleTablero.onChange(function(value){
 
-	/*var cubeMaterial = gui.add( parameters, 'material', [ "Basic", "Lambert", "Phong", "Wireframe" ] ).name('Material Type').listen();
-	cubeMaterial.onChange(function(value) 
-	{   updateCube();   });
-
-	*/
- 
-
-          /*var controlEsfera =*/ gui_widget.add(controlador , 'rotacionEsfera' , 0 , 4);
-          /*var controlToroide =*/ gui_widget.add(controlador , 'rotacionToroide' , 0 , 4);
-          /*var controlCubo = */gui_widget.add(controlador , 'rotacionCubo' , 0 , 4);
-          /*var controlCilindro =*/ gui_widget.add(controlador , 'rotacionCilindro' , 0 , 4);
-          /*var controlPiramide =*/ gui_widget.add(controlador , 'rotacionPiramide' , 0 , 4);
-				    	
-
-        /*  controlEsfera.onChange(function (value){
-
-          });
-
-          controlToroide.onChange(function (value){
-
-          });
-
-          controlCubo.onChange(function (value){
-
-          });
-
-          controlCilindro.onChange(function (value){
-
-          });
-
-          controlPiramide.onChange(function (value){
-
-          });*/
+        	if(value=="Simple")
+        		plano.visible=false;
+        	else
+        		plano.visible=true;
+        	});
+          gui_widget.add(controlador , 'rotacionEsfera' , 0 , 4);
+          gui_widget.add(controlador , 'rotacionToroide' , 0 , 4);
+          gui_widget.add(controlador , 'rotacionCubo' , 0 , 4);
+          gui_widget.add(controlador , 'rotacionCilindro' , 0 , 4);
+          gui_widget.add(controlador , 'rotacionPiramide' , 0 , 4);
 
           animacion();
       });
