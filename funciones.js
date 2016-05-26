@@ -49,7 +49,7 @@ function renderizar(){
 function agregar_piramide(){
   // Piramide
 	var pyramidGeometry = new THREE.CylinderGeometry( 0, 1, 2, 3); //(desconocido,radio,altura,numero de caras laterales)
-        var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,0)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
+        var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(0,267,100)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
 	//sombra piramide
 	pyramid = new THREE.Mesh( pyramidGeometry, pyramidMaterial );
 	pyramid.position.set( - 4, 1.5, 2 );
@@ -61,7 +61,7 @@ function agregar_piramide(){
 function agregar_esfera(){
   // Esfera
   var sphereGeometry = new THREE.SphereGeometry( 0.5, 20, 10 );
-  var sphereMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,255)', emissive: 0x222222 } );
+  var sphereMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,55)', emissive: 0x222222 } );
   sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
   sphere.position.set( 2, 2, -3 );
   scene.add( sphere );
@@ -73,7 +73,7 @@ function agregar_esfera(){
 function agregar_toroide(){
   //Toroide
   var torusGeometry = new THREE.TorusGeometry( 1, 0.2, 10, 16, TWO_PI );
-  var torusMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,0,255)', emissive: 0x200020 } );
+  var torusMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(0,0,255)', emissive: 0x200020 } );
   torus = new THREE.Mesh( torusGeometry, torusMaterial );
   torus.position.set(2, 2, 2);
   scene.add( torus );
@@ -85,7 +85,7 @@ function agregar_toroide(){
 function agregar_cilindro(){
   // Cilindro
   var cylinderGeometry = new THREE.CylinderGeometry( 0.3, 0.3, 2 );
-  var cylinderMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(0,0,255)', emissive: 0x000020 } );
+  var cylinderMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(0,200,255)', emissive: 0x000020 } );
   cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
   cylinder.position.set(-4, 2, -4);
   scene.add( cylinder );

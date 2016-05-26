@@ -1,7 +1,7 @@
 var gui_widget;
 
 var Controlador = function(){
-  this.color = "#ffae23";
+  this.color = "#ffae23"; 
   this.rotacionToroide = 0.5;
   this.rotacionPiramide = 0.5;
   this.rotacionCubo = 0.5;

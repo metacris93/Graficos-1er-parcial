@@ -27,7 +27,7 @@
 
       $(function (){
           renderer.setSize(window.innerWidth, window.innerHeight);
-          renderer.setClearColor( 'rgb(186,228,218)' );
+          renderer.setClearColor( 'rgb(186,228,218)' );//color de fondo
           $('#render').append(renderer.domElement);
           control_orbital = new THREE.OrbitControls(camara , renderer.domElement);
           control_orbital.addEventListener( 'change', renderizar );
