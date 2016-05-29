@@ -1,13 +1,13 @@
 var gui_widget;
 
 var Controlador = function(){
-  this.color = "#ffae23"; 
+  this.color = "#008200"; 
   this.rotacionToroide = 0.5;
   this.rotacionPiramide = 0.5;
   this.rotacionCubo = 0.5;
   this.rotacionCilindro = 0.5;
   this.rotacionEsfera = 0.5;
-  this.Piso="Ajedrez";
+  this.Piso="Simple";
 };
 
 var scene = new THREE.Scene();

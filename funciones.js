@@ -37,6 +37,7 @@ function crear_plano(ancho , alto , imagen){
 
 			plano = new THREE.Mesh( geometria, material );
 			plano.receiveShadow=true;
+			plano.visible=false;
 		}
 			
 }
