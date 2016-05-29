@@ -8,6 +8,7 @@ var Controlador = function(){
   this.rotacionCilindro = 0.5;
   this.rotacionEsfera = 0.5;
   this.Piso="Simple";
+  this.Luz="On";
 };
 
 var scene = new THREE.Scene();

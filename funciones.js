@@ -143,6 +143,7 @@ function animacion() {
 
   torus.position.x=5;
   torus.position.y=3;
+		
 
   cubeShadow.update( groundPlane, PosicionLuz );
   cylinderShadow.update( groundPlane, PosicionLuz );

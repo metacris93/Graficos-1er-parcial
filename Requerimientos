@@ -1,0 +1,33 @@
+
+Estimados estudiantes, En esta sección deben subir el proyecto #1 de introducción al uso de three.js para la creación de ambientes gráficos. 
+Requerimientos mínimos: 
+
+1. Un piso 
+	1.a que tenga un solo color por default (listo)
+	1.b que sea como un tablero de ajedrez (listo)
+	1.c que se pueda seleccionar el cambio de piso (listo)
+
+2. Tres objetos a flotando sobre el piso a diferente altura y distancia entre ellos 
+	2.a una esfera (listo)
+	2.b un cubo o paralelepípedo (listo)
+	2.c una pirámide (listo)
+	2.d un toroide (listo)
+	2.e que tengan diferentes colores cada objeto (listo)
+	***********************************************************************	
+	2.f que pueda cambiar el tamaño de cada objeto 
+	2.g que pueda cambiar la posición de cada objeto 
+	2.h que pueda hacer rotar cada objeto a diferente velocidad (listo)
+	2.i que pueda cambiar el color de cada objeto 
+	***********************************************************************
+
+3. al menos un foco 
+	3.a que lo puede prender o apagar 
+	3.b que se generen sombras o que pueda desactivar esta opción 
+
+4. que pueda hacer picking y realizar las funcionalidades 2.f,g,h,i en el objeto seleccionado (EXTRA) 
+
+Entregables: 
+1. Bitácora en formato word 
+2. Write-up en formato word 
+3. Archivos para correr el examen
+
