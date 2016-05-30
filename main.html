@@ -39,14 +39,14 @@
           plano.position.z = 0;
           plano.scale.set( 0.3, 0.3, 0.3 );
 
-	  planosimple.rotation.x=-0.5*Math.PI;
+	        planosimple.rotation.x=-0.5*Math.PI;
           planosimple.position.x = 0;
           planosimple.position.y = -1 ;
           planosimple.position.z = 0;
           planosimple.scale.set( 0.3, 0.3, 0.3 );
           scene.add( plano );
           scene.add(planosimple);
-	// se ubica la camara en el centro de la escena
+	        // se ubica la camara en el centro de la escena
           camara.position.x = -5;//-30
           camara.position.y = 5;
           camara.position.z = 0;
@@ -56,9 +56,9 @@
 
           FuenteDeLuz.position.set( -30, 50, - 2 );
           FuenteDeLuz.lookAt( scene.position );
-	
+
   	  scene.add( FuenteDeLuz );
-          PosicionLuz.x = FuenteDeLuz.position.x;
+      PosicionLuz.x = FuenteDeLuz.position.x;
   	  PosicionLuz.y = FuenteDeLuz.position.y;
   	  PosicionLuz.z = FuenteDeLuz.position.z;
   	  PosicionLuz.w = 0.001; //valor debe ser cercano a cero para mejores resultados, pero no cero, x problemas de división para cero.
@@ -72,7 +72,7 @@
 
   	   agregar_esfera();
 
-           agregar_piramide();
+       agregar_piramide();
 
           gui_widget = new dat.GUI();
           var control = gui_widget.addColor(controlador , 'color').listen();
@@ -85,34 +85,30 @@
         	toggleTablero.onChange(function(value){
 
         	if(value=="Simple")
-        		plano.visible=false;			
+        		plano.visible=false;
         	else
         		plano.visible=true;
         	});
-		
-		var toggleTablero=gui_widget.add(controlador,'Luz',["On","Off"]).listen();
-        	toggleTablero.onChange(function(value){
 
-        	if(value=="On"){
-        		
-                        scene.add(FuenteDeLuz);
-			scene.add(cylinderShadow);
-			scene.add(torusShadow);
-			scene.add(pyramidShadow);
-			scene.add(cubeShadow);
-			scene.add(sphereShadow);
-                        }			
-        	else
-			{
-			scene.remove(FuenteDeLuz);
-			scene.remove(cylinderShadow);
-			scene.remove(torusShadow);
-			scene.remove(pyramidShadow);
-			scene.remove(cubeShadow);
-			scene.remove(sphereShadow);
-						
-			}
-        		
+		      var toggleTablero = gui_widget.add(controlador,'Luz',["On","Off"]).listen();
+        	toggleTablero.onChange(function(value){
+            	if(value=="On"){
+                  scene.add(FuenteDeLuz);
+            			scene.add(cylinderShadow);
+            			scene.add(torusShadow);
+            			scene.add(pyramidShadow);
+            			scene.add(cubeShadow);
+            			scene.add(sphereShadow);
+              }
+            	else
+    			    {
+            			scene.remove(FuenteDeLuz);
+            			scene.remove(cylinderShadow);
+            			scene.remove(torusShadow);
+            			scene.remove(pyramidShadow);
+            			scene.remove(cubeShadow);
+            			scene.remove(sphereShadow);
+    			    }
         	});
 
           gui_widget.add(controlador , 'rotacionEsfera' , 0 , 4);
@@ -120,12 +116,34 @@
           gui_widget.add(controlador , 'rotacionCubo' , 0 , 4);
           gui_widget.add(controlador , 'rotacionCilindro' , 0 , 4);
           gui_widget.add(controlador , 'rotacionPiramide' , 0 , 4);
-	  
-	  gui_widget.add(controlador , 'traslacionEsfera' , 0 , 4);
+
+	        gui_widget.add(controlador , 'traslacionEsfera' , 0 , 4);
           gui_widget.add(controlador , 'traslacionToroide' , 0 , 4);
           gui_widget.add(controlador , 'traslacionCubo' , 0 , 4);
           gui_widget.add(controlador , 'traslacionCilindro' , 0 , 4);
           gui_widget.add(controlador , 'traslacionPiramide' , 0 , 4);
+
+          var folder = gui_widget.addFolder('Objeto Colores');
+          var sc = folder.addColor(sphereColor , 'colorEsfera').listen();
+          sc.onChange(function(value){
+              sphere.material.color.setHex( value.replace("#", "0x") );
+          });
+          var pc = folder.addColor(pyramidColor , 'colorPiramide').listen();
+          pc.onChange(function(value){
+              pyramid.material.color.setHex( value.replace("#", "0x") );
+          });
+          var tc = folder.addColor(torusColor , 'colorToroide').listen();
+          tc.onChange(function(value){
+              torus.material.color.setHex( value.replace("#", "0x") );
+          });
+          var cc = folder.addColor(cubeColor , 'colorCubo').listen();
+          cc.onChange(function(value){
+              cube.material.color.setHex( value.replace("#", "0x") );
+          });
+          var cyc = folder.addColor(cylinderColor , 'colorCilindro').listen();
+          cyc.onChange(function(value){
+              cylinder.material.color.setHex( value.replace("#", "0x") );
+          });
 
           animacion();
       });

@@ -1,7 +1,7 @@
 var gui_widget;
 
 var Controlador = function(){
-  this.color = "#008200"; 
+  this.color = "#008200";
   this.rotacionToroide = 0.5;
   this.rotacionPiramide = 0.5;
   this.rotacionCubo = 0.5;
@@ -17,6 +17,28 @@ var Controlador = function(){
   this.Piso="Simple";
   this.Luz="On";
 };
+var colorEsfera = function(){
+  this.colorEsfera = "#ACB40D";
+};
+var colorPiramide = function(){
+  this.colorPiramide = "#3A3707";
+};
+var colorToroide = function(){
+  this.colorToroide = "#BDB425";
+};
+var colorCubo = function(){
+  this.colorCubo = "#071637";
+};
+var colorCilindro = function(){
+  this.colorCilindro = "#B40D1C";
+};
+/*var ControladorColorObjeto = function(){
+   this.colorCilindro = "#B40D1C";
+   this.colorCubo = "#071637";
+   this.colorToroide = "#BDB425";
+   this.colorPiramide = "#3A3707";
+   this.colorEsfera = "#008200";
+};*/
 
 var scene = new THREE.Scene();
 
@@ -51,3 +73,13 @@ var planeConstant = 0.01;
 var groundPlane = new THREE.Plane( normalVector, planeConstant );
 
 var controlador = new Controlador();
+
+var sphereColor = new colorEsfera();
+
+var pyramidColor = new colorPiramide();
+
+var torusColor = new colorToroide();
+
+var cubeColor = new colorCubo();
+
+var cylinderColor = new colorCilindro();
