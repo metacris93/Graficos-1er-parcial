@@ -111,18 +111,19 @@
     			    }
         	});
 
-          gui_widget.add(controlador , 'rotacionEsfera' , 0 , 4);
-          gui_widget.add(controlador , 'rotacionToroide' , 0 , 4);
-          gui_widget.add(controlador , 'rotacionCubo' , 0 , 4);
-          gui_widget.add(controlador , 'rotacionCilindro' , 0 , 4);
-          gui_widget.add(controlador , 'rotacionPiramide' , 0 , 4);
-
+          gui_widget.add(controlador , 'rotacionEsfera' , 0 , 6);
+          gui_widget.add(controlador , 'rotacionToroide' , 0 , 6);
+          gui_widget.add(controlador , 'rotacionCubo' , 0 , 6);
+          gui_widget.add(controlador , 'rotacionCilindro' , 0 , 6);
+          gui_widget.add(controlador , 'rotacionPiramide' , 0 , 6);
+          gui_widget.add(controlador , 'radioEsfera' , 0.5 , 3);
 	        gui_widget.add(controlador , 'traslacionEsfera' , 0 , 4);
           gui_widget.add(controlador , 'traslacionToroide' , 0 , 4);
           gui_widget.add(controlador , 'traslacionCubo' , 0 , 4);
           gui_widget.add(controlador , 'traslacionCilindro' , 0 , 4);
           gui_widget.add(controlador , 'traslacionPiramide' , 0 , 4);
 
+          // Agregar colores a los objetos
           var folder = gui_widget.addFolder('Objeto Colores');
           var sc = folder.addColor(sphereColor , 'colorEsfera').listen();
           sc.onChange(function(value){

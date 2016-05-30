@@ -61,7 +61,7 @@ function agregar_piramide(){
 
 function agregar_esfera(){
   // Esfera
-  var sphereGeometry = new THREE.SphereGeometry( 0.5, 20, 10 );
+  var sphereGeometry = new THREE.SphereGeometry( radio_esfera, 20, 10 );
   var sphereMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,55)', emissive: 0x222222 } );
   sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
   sphere.position.set( 2, 2, -3 );
@@ -121,7 +121,16 @@ function animacion() {
   requestAnimationFrame( animacion );
 
   frameTime = clock.getDelta();
-
+	var radio = controlador.radioEsfera;
+	var scala = radio / radio_esfera;
+	/*la escala de la esfera sera el radio deseado dividido por el radio inicial
+	  Por ejemplo se selecciona radio 12, entonces la escala sera 12/4 = 3
+	  al realizar escalamiento, las dimensiones son multiplicadas por 3, dando como resltado 12, el radio deseado
+	*/
+	//Se realiza el escalamiento
+	sphere.scale.x =scala;
+	sphere.scale.y =scala;
+	sphere.scale.z= scala;
   //cube.rotation.x += 1.0 * frameTime;
   cube.rotation.y += controlador.rotacionCubo * frameTime;
 

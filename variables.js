@@ -13,7 +13,7 @@ var Controlador = function(){
   this.traslacionCubo = 0;
   this.traslacionCilindro = 0;
   this.traslacionEsfera = 0;
-
+  this.radioEsfera = 0.5;
   this.Piso="Simple";
   this.Luz="On";
 };
@@ -83,3 +83,5 @@ var torusColor = new colorToroide();
 var cubeColor = new colorCubo();
 
 var cylinderColor = new colorCilindro();
+
+var radio_esfera = 0.5;
