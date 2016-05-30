@@ -143,7 +143,28 @@ function animacion() {
 
   torus.position.x=5;
   torus.position.y=3;
-		
+
+  
+if ( AnguloEnHorizontal > TWO_PI )
+	AnguloEnHorizontal -= TWO_PI;
+	
+        cube.position.x = Math.cos( AnguloEnHorizontal ) * controlador.traslacionCubo/2;
+	cylinder.position.x = Math.sin( AnguloEnHorizontal ) * -controlador.traslacionCilindro/2;
+	torus.position.x = Math.cos( AnguloEnHorizontal ) * controlador.traslacionToroide/2;
+	pyramid.position.x=Math.sin(AnguloEnHorizontal)* controlador.traslacionPiramide/2-3;
+	sphere.position.x=Math.cos(AnguloEnHorizontal)*controlador.traslacionEsfera/2+3;
+
+AnguloEnVertical += 1.5 * frameTime;
+
+if ( AnguloEnVertical > TWO_PI )
+     AnguloEnVertical -= TWO_PI;
+				
+cube.position.y = Math.sin( AnguloEnVertical ) * controlador.traslacionCubo/2+4;
+cylinder.position.y = Math.sin( AnguloEnVertical ) * controlador.traslacionCilindro/4+2;
+torus.position.y = Math.cos( AnguloEnVertical ) * controlador.traslacionToroide/4 + 3.1;
+pyramid.position.y=Math.sin(AnguloEnVertical)* controlador.traslacionPiramide/4+3.7;				
+sphere.position.y=Math.cos(AnguloEnHorizontal)*controlador.traslacionEsfera/4+3;		
+
 
   cubeShadow.update( groundPlane, PosicionLuz );
   cylinderShadow.update( groundPlane, PosicionLuz );

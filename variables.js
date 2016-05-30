@@ -7,6 +7,13 @@ var Controlador = function(){
   this.rotacionCubo = 0.5;
   this.rotacionCilindro = 0.5;
   this.rotacionEsfera = 0.5;
+
+  this.traslacionToroide = 0;
+  this.traslacionPiramide = 0;
+  this.traslacionCubo = 0;
+  this.traslacionCilindro = 0;
+  this.traslacionEsfera = 0;
+
   this.Piso="Simple";
   this.Luz="On";
 };

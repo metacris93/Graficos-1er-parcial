@@ -78,7 +78,7 @@
           var control = gui_widget.addColor(controlador , 'color').listen();
           control.onChange(function(value){
               plano.material.color.setHex( value.replace("#", "0x") );
-		          planosimple.material.color.setHex( value.replace("#", "0x") );
+              planosimple.material.color.setHex( value.replace("#", "0x") );
           });
 
          	var toggleTablero=gui_widget.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
@@ -120,6 +120,12 @@
           gui_widget.add(controlador , 'rotacionCubo' , 0 , 4);
           gui_widget.add(controlador , 'rotacionCilindro' , 0 , 4);
           gui_widget.add(controlador , 'rotacionPiramide' , 0 , 4);
+	  
+	  gui_widget.add(controlador , 'traslacionEsfera' , 0 , 4);
+          gui_widget.add(controlador , 'traslacionToroide' , 0 , 4);
+          gui_widget.add(controlador , 'traslacionCubo' , 0 , 4);
+          gui_widget.add(controlador , 'traslacionCilindro' , 0 , 4);
+          gui_widget.add(controlador , 'traslacionPiramide' , 0 , 4);
 
           animacion();
       });
