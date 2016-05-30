@@ -53,7 +53,7 @@ function agregar_piramide(){
   var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(0,267,100)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
 	//sombra piramide
 	pyramid = new THREE.Mesh( pyramidGeometry, pyramidMaterial );
-	pyramid.position.set( - 4, 1.5, 2 );
+	pyramid.position.set( -4, 1.5, 2 );
 	scene.add( pyramid );
 	pyramidShadow = new THREE.ShadowMesh( pyramid );
 	scene.add( pyramidShadow );
@@ -88,7 +88,7 @@ function agregar_cilindro(){
   var cylinderGeometry = new THREE.CylinderGeometry( 0.3, 0.3, 2 );
   var cylinderMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(0,200,255)', emissive: 0x000020 } );
   cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
-  cylinder.position.set(-4, 2, -4);
+  cylinder.position.set(-4, -4, -4);
   scene.add( cylinder );
 //sombra del cilindro
   cylinderShadow = new THREE.ShadowMesh( cylinder );
@@ -157,11 +157,11 @@ function animacion() {
 if ( AnguloEnHorizontal > TWO_PI )
 	AnguloEnHorizontal -= TWO_PI;
 
-        cube.position.x = Math.cos( AnguloEnHorizontal ) * controlador.traslacionCubo/2;
+  cube.position.x     = Math.cos( AnguloEnHorizontal ) * controlador.traslacionCubo/2;
 	cylinder.position.x = Math.sin( AnguloEnHorizontal ) * -controlador.traslacionCilindro/2;
-	torus.position.x = Math.cos( AnguloEnHorizontal ) * controlador.traslacionToroide/2;
-	pyramid.position.x=Math.sin(AnguloEnHorizontal)* controlador.traslacionPiramide/2-3;
-	sphere.position.x=Math.cos(AnguloEnHorizontal)*controlador.traslacionEsfera/2+3;
+	torus.position.x    = Math.cos( AnguloEnHorizontal ) * controlador.traslacionToroide/2;
+	pyramid.position.x  = Math.sin(AnguloEnHorizontal)* controlador.traslacionPiramide/2-3;
+	sphere.position.x   = Math.cos(AnguloEnHorizontal)*controlador.traslacionEsfera/2+3;
 
 AnguloEnVertical += 1.5 * frameTime;
 
