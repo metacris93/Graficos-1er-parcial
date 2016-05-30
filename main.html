@@ -75,13 +75,14 @@
        agregar_piramide();
 
           gui_widget = new dat.GUI();
-          var control = gui_widget.addColor(controlador , 'color').listen();
+          var f1 = gui_widget.addFolder("Folder");
+          var control = f1.addColor(controlador , 'color').listen();
           control.onChange(function(value){
               plano.material.color.setHex( value.replace("#", "0x") );
               planosimple.material.color.setHex( value.replace("#", "0x") );
           });
 
-         	var toggleTablero=gui_widget.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
+         	var toggleTablero=f1.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
         	toggleTablero.onChange(function(value){
 
         	if(value=="Simple")
@@ -90,7 +91,7 @@
         		plano.visible=true;
         	});
 
-		      var toggleTablero = gui_widget.add(controlador,'Luz',["On","Off"]).listen();
+		      var toggleTablero = f1.add(controlador,'Luz',["On","Off"]).listen();
         	toggleTablero.onChange(function(value){
             	if(value=="On"){
                   scene.add(FuenteDeLuz);
@@ -111,17 +112,17 @@
     			    }
         	});
 
-          gui_widget.add(controlador , 'rotacionEsfera' , 0 , 6);
-          gui_widget.add(controlador , 'rotacionToroide' , 0 , 6);
-          gui_widget.add(controlador , 'rotacionCubo' , 0 , 6);
-          gui_widget.add(controlador , 'rotacionCilindro' , 0 , 6);
-          gui_widget.add(controlador , 'rotacionPiramide' , 0 , 6);
-          gui_widget.add(controlador , 'radioEsfera' , 0.5 , 3);
-	        gui_widget.add(controlador , 'traslacionEsfera' , 0 , 4);
-          gui_widget.add(controlador , 'traslacionToroide' , 0 , 4);
-          gui_widget.add(controlador , 'traslacionCubo' , 0 , 4);
-          gui_widget.add(controlador , 'traslacionCilindro' , 0 , 4);
-          gui_widget.add(controlador , 'traslacionPiramide' , 0 , 4);
+          f1.add(controlador , 'rotacionEsfera' , 0 , 6);
+          f1.add(controlador , 'rotacionToroide' , 0 , 6);
+          f1.add(controlador , 'rotacionCubo' , 0 , 6);
+          f1.add(controlador , 'rotacionCilindro' , 0 , 6);
+          f1.add(controlador , 'rotacionPiramide' , 0 , 6);
+          f1.add(controlador , 'radioEsfera' , 0.5 , 3);
+	        f1.add(controlador , 'traslacionEsfera' , 0 , 4);
+          f1.add(controlador , 'traslacionToroide' , 0 , 4);
+          f1.add(controlador , 'traslacionCubo' , 0 , 4);
+          f1.add(controlador , 'traslacionCilindro' , 0 , 4);
+          f1.add(controlador , 'traslacionPiramide' , 0 , 4);
 
           // Agregar colores a los objetos
           var folder = gui_widget.addFolder('Objeto Colores');
