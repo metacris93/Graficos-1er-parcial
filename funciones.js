@@ -71,6 +71,7 @@ function agregar_esfera(){
   scene.add( sphereShadow );
 }
 
+
 function agregar_toroide(){
   //Toroide
   var torusGeometry = new THREE.TorusGeometry( 1, 0.2, 10, 16, TWO_PI );
