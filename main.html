@@ -74,6 +74,7 @@
 
        agregar_piramide();
 
+
           gui_widget = new dat.GUI();
           var f1 = gui_widget.addFolder("Folder");
           var control = f1.addColor(controlador , 'color').listen();
@@ -90,6 +91,8 @@
         	else
         		plano.visible=true;
         	});
+
+
 
 		      var toggleTablero = f1.add(controlador,'Luz',["On","Off"]).listen();
         	toggleTablero.onChange(function(value){
@@ -147,7 +150,66 @@
               cylinder.material.color.setHex( value.replace("#", "0x") );
           });
 
-          animacion();
+
+
+            /*  cambiar Textura a Objetos */
+          var folder2 = gui_widget.addFolder('Texture Obj');
+          var toggleTablero = folder2.add(controlador,'Texturaesfera',["On","Off"]).listen();
+         
+          toggleTablero.onChange(function(value){
+           
+            if(value=="On"){
+              scene.remove(sphere);
+              scene.remove(sphereShadow);
+                var texture1 = THREE.ImageUtils.loadTexture( 'image/tierra.jpg' );
+        var sphereMaterial = new THREE.MeshPhongMaterial( { map: texture1 } );
+        var sphereGeometry = new THREE.SphereGeometry( radio_esfera, 20, 10 );
+        //var geometry = new THREE.BoxGeometry( radio_esfera, 20, 10 );
+        sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+        //sphere.position.z=0;
+        sphere.position.set( 2, 2, -3 );
+        
+        scene.add( sphere );
+        sphereShadow = new THREE.ShadowMesh( sphere );
+        scene.add( sphereShadow );
+
+            }else{
+              scene.remove(sphere);
+              scene.remove(sphereShadow);
+              agregar_esfera();
+            }
+
+          });
+            
+            var toggleTablero = folder2.add(controlador,'Texturacubo',["On","Off"]).listen();
+         
+          toggleTablero.onChange(function(value){
+           
+            if(value=="On"){
+              scene.remove(cube);
+              scene.remove(cubeShadow);
+             //var texture1 = THREE.ImageUtils.loadTexture( 'image/tierra.jpg' );
+             var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
+              texture2 = THREE.ImageUtils.loadTexture( 'image/francesiloside2.jpg' );
+                var cubeMaterial = new THREE.MeshLambertMaterial( { map: texture2 } );
+              cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
+              cube.position.z = 0;
+            scene.add( cube );
+            cubeShadow = new THREE.ShadowMesh( cube );
+            scene.add( cubeShadow );
+              
+       
+            }else{
+              scene.remove(cube);
+              scene.remove(cubeShadow);
+              agregar_cubo();
+
+
+            }
+
+          });
+          
+               animacion();
       });
 
       window.addEventListener( 'resize', function () {
