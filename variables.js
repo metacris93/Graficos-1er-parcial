@@ -13,9 +13,12 @@ var Controlador = function(){
   this.traslacionCubo = 0;
   this.traslacionCilindro = 0;
   this.traslacionEsfera = 0;
-  this.radioEsfera = 0.5;
+  this.radioEsfera = 1;
   this.Piso="Simple";
   this.Luz="On";
+  this.Texturaesfera="Off";
+  this.Texturacubo="Off";
+  
 };
 var colorEsfera = function(){
   this.colorEsfera = "#ACB40D";
@@ -39,6 +42,11 @@ var colorCilindro = function(){
    this.colorPiramide = "#3A3707";
    this.colorEsfera = "#008200";
 };*/
+/*
+var colorTextura = function(){
+  this.colorTextura = loader.loadTexture('flaretest.jpg');
+};*/
+
 
 var scene = new THREE.Scene();
 
@@ -75,6 +83,8 @@ var groundPlane = new THREE.Plane( normalVector, planeConstant );
 var controlador = new Controlador();
 
 var sphereColor = new colorEsfera();
+
+//var sphereTexture = new colorTextura();
 
 var pyramidColor = new colorPiramide();
 
