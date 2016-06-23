@@ -18,6 +18,9 @@ var Controlador = function(){
   this.Luz="On";
   this.Texturaesfera="Off";
   this.Texturacubo="Off";
+  this.TexturaToroide="Off";
+  this.TexturaPiramide="Off";
+  this.TexturaCilindro="Off"; 
   
 };
 var colorEsfera = function(){
@@ -35,6 +38,11 @@ var colorCubo = function(){
 var colorCilindro = function(){
   this.colorCilindro = "#B40D1C";
 };
+
+
+
+
+
 /*var ControladorColorObjeto = function(){
    this.colorCilindro = "#B40D1C";
    this.colorCubo = "#071637";
@@ -60,7 +68,7 @@ var planosimple;
 
 var control_orbital;
 
-var FuenteDeLuz = new THREE.DirectionalLight( 'rgb(255,255,255)', 1 );
+var FuenteDeLuz = new THREE.DirectionalLight( 'rgb(255,255,255)', 1 ); //SpotLight
 
 var PosicionLuz = new THREE.Vector4();
 

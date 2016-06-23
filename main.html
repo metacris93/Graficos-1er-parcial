@@ -27,7 +27,7 @@
 
       $(function (){
           renderer.setSize(window.innerWidth, window.innerHeight);
-          renderer.setClearColor( 'rgb(186,228,218)' );//color de fondo
+          renderer.setClearColor( 'rgb(200,230,220)' );//color de fondo186,228,218
           $('#render').append(renderer.domElement);
           control_orbital = new THREE.OrbitControls(camara , renderer.domElement);
           control_orbital.addEventListener( 'change', renderizar );
@@ -153,58 +153,87 @@
 
 
             /*  cambiar Textura a Objetos */
+            // añadir textura a sphera
           var folder2 = gui_widget.addFolder('Texture Obj');
           var toggleTablero = folder2.add(controlador,'Texturaesfera',["On","Off"]).listen();
          
           toggleTablero.onChange(function(value){
            
             if(value=="On"){
-              scene.remove(sphere);
-              scene.remove(sphereShadow);
-                var texture1 = THREE.ImageUtils.loadTexture( 'image/tierra.jpg' );
-        var sphereMaterial = new THREE.MeshPhongMaterial( { map: texture1 } );
-        var sphereGeometry = new THREE.SphereGeometry( radio_esfera, 20, 10 );
-        //var geometry = new THREE.BoxGeometry( radio_esfera, 20, 10 );
-        sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-        //sphere.position.z=0;
-        sphere.position.set( 2, 2, -3 );
-        
-        scene.add( sphere );
-        sphereShadow = new THREE.ShadowMesh( sphere );
-        scene.add( sphereShadow );
 
+              agregar_Texture_esfera();
+              
             }else{
+
               scene.remove(sphere);
               scene.remove(sphereShadow);
               agregar_esfera();
             }
 
           });
-            
+            //añadir textura a cubo
             var toggleTablero = folder2.add(controlador,'Texturacubo',["On","Off"]).listen();
          
           toggleTablero.onChange(function(value){
            
             if(value=="On"){
-              scene.remove(cube);
-              scene.remove(cubeShadow);
-             //var texture1 = THREE.ImageUtils.loadTexture( 'image/tierra.jpg' );
-             var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
-              texture2 = THREE.ImageUtils.loadTexture( 'image/francesiloside2.jpg' );
-                var cubeMaterial = new THREE.MeshLambertMaterial( { map: texture2 } );
-              cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
-              cube.position.z = 0;
-            scene.add( cube );
-            cubeShadow = new THREE.ShadowMesh( cube );
-            scene.add( cubeShadow );
-              
-       
+
+              agregar_textura_cubo();
+
             }else{
               scene.remove(cube);
               scene.remove(cubeShadow);
               agregar_cubo();
+            }
 
+          }); 
+                //añadir textura a toroide
+            var toggleTablero = folder2.add(controlador,'TexturaToroide',["On","Off"]).listen();
+         
+          toggleTablero.onChange(function(value){
+           
+            if(value=="On"){
 
+              agregar_textura_toroide();
+
+            }else{
+              scene.remove(torus);
+              scene.remove(torusShadow);
+              agregar_toroide();
+            }
+
+          });
+
+               //añadir textura a cilindro
+            var toggleTablero = folder2.add(controlador,'TexturaCilindro',["On","Off"]).listen();
+         
+          toggleTablero.onChange(function(value){
+           
+            if(value=="On"){
+
+              agregar_textura_cilindro();
+
+            }else{
+              scene.remove(cylinder);
+              scene.remove(cylinderShadow);
+              agregar_cilindro();
+            }
+
+          });
+
+        // añadir textura a piramide
+            var toggleTablero = folder2.add(controlador,'TexturaPiramide',["On","Off"]).listen();
+         
+          toggleTablero.onChange(function(value){
+           
+            if(value=="On"){
+
+              agregar_texture_piramide();
+
+            }else{
+              scene.remove(pyramid);
+              scene.remove(pyramidShadow);
+              agregar_piramide();
             }
 
           });

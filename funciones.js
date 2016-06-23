@@ -8,6 +8,7 @@ function crear_plano(ancho , alto , imagen){
 		}else {
 			//Se crea plano simple
 			var geometriasimple = new THREE.PlaneBufferGeometry(ancho, alto,1,1);
+
 			var materialsimple = new THREE.MeshBasicMaterial({color: 'rgb(0,130,0)'});
 			planosimple = new THREE.Mesh( geometriasimple, materialsimple );
 			planosimple.receiveShadow = true;
@@ -49,7 +50,7 @@ function renderizar(){
 
 function agregar_piramide(){
   // Piramide
-	var pyramidGeometry = new THREE.CylinderGeometry( 0, 1, 2, 3); //(desconocido,radio,altura,numero de caras laterales)
+	var pyramidGeometry = new THREE.CylinderGeometry( 0, 1.2, 2, 4); //(desconocido,radio,altura,numero de caras laterales)
   var pyramidMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(0,267,100)', emissive: 0x440000, shading: THREE.FlatShading, 					shininess: 0 } );
 	//sombra piramide
 	pyramid = new THREE.Mesh( pyramidGeometry, pyramidMaterial );
@@ -57,6 +58,21 @@ function agregar_piramide(){
 	scene.add( pyramid );
 	pyramidShadow = new THREE.ShadowMesh( pyramid );
 	scene.add( pyramidShadow );
+}
+
+function agregar_texture_piramide(){
+  // Piramide
+  scene.remove(pyramid);
+  scene.remove(pyramidShadow);
+  var pyramidGeometry = new THREE.CylinderGeometry( 0, 1.2, 2, 4); //(desconocido,radio,altura,numero de caras laterales)
+  var texture1 = THREE.ImageUtils.loadTexture( 'image/arena.jpg' );
+  var pyramidMaterial = new THREE.MeshPhongMaterial( { map: texture1 } );
+  //sombra piramide
+  pyramid = new THREE.Mesh( pyramidGeometry, pyramidMaterial );
+  pyramid.position.set( -4, 1.5, 2 );
+  scene.add( pyramid );
+  pyramidShadow = new THREE.ShadowMesh( pyramid );
+  scene.add( pyramidShadow );
 }
 
 function agregar_esfera(){
@@ -71,6 +87,25 @@ function agregar_esfera(){
   scene.add( sphereShadow );
 }
 
+function agregar_Texture_esfera(){
+  // Texture de Esfera
+        scene.remove(sphere);
+        scene.remove(sphereShadow);
+        var texture1 = THREE.ImageUtils.loadTexture( 'image/tierra.jpg' );
+        var sphereMaterial = new THREE.MeshPhongMaterial( { map: texture1 } );
+        var sphereGeometry = new THREE.SphereGeometry( radio_esfera, 20, 10 );
+        //var geometry = new THREE.BoxGeometry( radio_esfera, 20, 10 );
+        sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+        //sphere.position.z=0;
+        sphere.position.set( 2, 2, -3 );
+        
+        scene.add( sphere );
+        sphereShadow = new THREE.ShadowMesh( sphere );
+        scene.add( sphereShadow );
+
+}
+
+
 
 function agregar_toroide(){
   //Toroide
@@ -80,6 +115,23 @@ function agregar_toroide(){
   torus.position.set(2, 2, 2);
   scene.add( torus );
 	//sombra toroide
+  torusShadow = new THREE.ShadowMesh( torus );
+  scene.add( torusShadow );
+}
+
+function agregar_textura_toroide(){
+  //Toroide
+
+   scene.remove(torus);
+  scene.remove(torusShadow);
+        
+  var torusGeometry = new THREE.TorusGeometry( 1, 0.2, 10, 16, TWO_PI );
+var texture1 = THREE.ImageUtils.loadTexture( 'image/flaretest.jpg' );
+  var torusMaterial = new THREE.MeshPhongMaterial( { map: texture1 } );
+  torus = new THREE.Mesh( torusGeometry, torusMaterial );
+  torus.position.set(2, 2, 2);
+  scene.add( torus );
+  //sombra toroide
   torusShadow = new THREE.ShadowMesh( torus );
   scene.add( torusShadow );
 }
@@ -96,6 +148,21 @@ function agregar_cilindro(){
   scene.add( cylinderShadow );
 }
 
+function agregar_textura_cilindro(){
+  // Cilindro
+  scene.remove(cylinder);
+  scene.remove(cylinderShadow);
+  var cylinderGeometry = new THREE.CylinderGeometry( 0.3, 0.3, 2 );
+  var texture2 = THREE.ImageUtils.loadTexture( 'image/solido.jpg' );
+  var cylinderMaterial = new THREE.MeshPhongMaterial( { map: texture2 } );
+  cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
+  cylinder.position.set(-4, -4, -4);
+  scene.add( cylinder );
+//sombra del cilindro
+  cylinderShadow = new THREE.ShadowMesh( cylinder );
+  scene.add( cylinderShadow ); 
+}
+
 function agregar_cubo(){
   // cubo
   var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
@@ -106,6 +173,23 @@ function agregar_cubo(){
 	//sombra del cubo
   cubeShadow = new THREE.ShadowMesh( cube );
   scene.add( cubeShadow );
+}
+
+function agregar_textura_cubo()
+{
+  // cubo textura
+              scene.remove(cube);
+              scene.remove(cubeShadow);
+             //var texture1 = THREE.ImageUtils.loadTexture( 'image/tierra.jpg' );
+             var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
+              texture2 = THREE.ImageUtils.loadTexture( 'image/cubo.jpg' );
+                var cubeMaterial = new THREE.MeshLambertMaterial( { map: texture2 } );
+              cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
+              cube.position.z = 0;
+            scene.add( cube );
+            cubeShadow = new THREE.ShadowMesh( cube );
+            scene.add( cubeShadow );
+              
 }
 
 function agregar_plano(){
