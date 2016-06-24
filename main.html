@@ -126,8 +126,10 @@
           f1.add(controlador , 'traslacionCubo' , 0 , 4);
           f1.add(controlador , 'traslacionCilindro' , 0 , 4);
           f1.add(controlador , 'traslacionPiramide' , 0 , 4);
-
-          // Agregar colores a los objetos
+          raycaster = new THREE.Raycaster();
+          document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+/*****************************************************************************/
+/******************** Agregar colores a los objetos **************************/
           var folder = gui_widget.addFolder('Objeto Colores');
           var sc = folder.addColor(sphereColor , 'colorEsfera').listen();
           sc.onChange(function(value){
@@ -150,19 +152,18 @@
               cylinder.material.color.setHex( value.replace("#", "0x") );
           });
 
-
-
-            /*  cambiar Textura a Objetos */
+/***********************************************************************/
+/********************  cambiar Textura a Objetos **********************/
             // añadir textura a sphera
           var folder2 = gui_widget.addFolder('Texture Obj');
           var toggleTablero = folder2.add(controlador,'Texturaesfera',["On","Off"]).listen();
-         
+
           toggleTablero.onChange(function(value){
-           
+
             if(value=="On"){
 
               agregar_Texture_esfera();
-              
+
             }else{
 
               scene.remove(sphere);
@@ -173,9 +174,9 @@
           });
             //añadir textura a cubo
             var toggleTablero = folder2.add(controlador,'Texturacubo',["On","Off"]).listen();
-         
+
           toggleTablero.onChange(function(value){
-           
+
             if(value=="On"){
 
               agregar_textura_cubo();
@@ -186,12 +187,12 @@
               agregar_cubo();
             }
 
-          }); 
+          });
                 //añadir textura a toroide
-            var toggleTablero = folder2.add(controlador,'TexturaToroide',["On","Off"]).listen();
-         
+          var toggleTablero = folder2.add(controlador,'TexturaToroide',["On","Off"]).listen();
+
           toggleTablero.onChange(function(value){
-           
+
             if(value=="On"){
 
               agregar_textura_toroide();
@@ -205,10 +206,10 @@
           });
 
                //añadir textura a cilindro
-            var toggleTablero = folder2.add(controlador,'TexturaCilindro',["On","Off"]).listen();
-         
+          var toggleTablero = folder2.add(controlador,'TexturaCilindro',["On","Off"]).listen();
+
           toggleTablero.onChange(function(value){
-           
+
             if(value=="On"){
 
               agregar_textura_cilindro();
@@ -222,10 +223,10 @@
           });
 
         // añadir textura a piramide
-            var toggleTablero = folder2.add(controlador,'TexturaPiramide',["On","Off"]).listen();
-         
+          var toggleTablero = folder2.add(controlador,'TexturaPiramide',["On","Off"]).listen();
+
           toggleTablero.onChange(function(value){
-           
+
             if(value=="On"){
 
               agregar_texture_piramide();
@@ -237,17 +238,14 @@
             }
 
           });
-          
+
                animacion();
       });
 
       window.addEventListener( 'resize', function () {
-
-      camara.aspect = window.innerWidth / window.innerHeight;
-      camara.updateProjectionMatrix();
-
-      renderer.setSize( window.innerWidth, window.innerHeight );
-
+          camara.aspect = window.innerWidth / window.innerHeight;
+          camara.updateProjectionMatrix();
+          renderer.setSize( window.innerWidth, window.innerHeight );
       }, false );
       </script>
   </body>

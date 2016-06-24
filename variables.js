@@ -20,8 +20,8 @@ var Controlador = function(){
   this.Texturacubo="Off";
   this.TexturaToroide="Off";
   this.TexturaPiramide="Off";
-  this.TexturaCilindro="Off"; 
-  
+  this.TexturaCilindro="Off";
+
 };
 var colorEsfera = function(){
   this.colorEsfera = "#ACB40D";
@@ -103,3 +103,7 @@ var cubeColor = new colorCubo();
 var cylinderColor = new colorCilindro();
 
 var radio_esfera = 0.5;
+
+var raycaster; // para hacer el picking
+
+var mouse = new THREE.Vector2(), INTERSECTED;

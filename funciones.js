@@ -98,7 +98,7 @@ function agregar_Texture_esfera(){
         sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
         //sphere.position.z=0;
         sphere.position.set( 2, 2, -3 );
-        
+
         scene.add( sphere );
         sphereShadow = new THREE.ShadowMesh( sphere );
         scene.add( sphereShadow );
@@ -124,7 +124,7 @@ function agregar_textura_toroide(){
 
    scene.remove(torus);
   scene.remove(torusShadow);
-        
+
   var torusGeometry = new THREE.TorusGeometry( 1, 0.2, 10, 16, TWO_PI );
 var texture1 = THREE.ImageUtils.loadTexture( 'image/flaretest.jpg' );
   var torusMaterial = new THREE.MeshPhongMaterial( { map: texture1 } );
@@ -160,13 +160,13 @@ function agregar_textura_cilindro(){
   scene.add( cylinder );
 //sombra del cilindro
   cylinderShadow = new THREE.ShadowMesh( cylinder );
-  scene.add( cylinderShadow ); 
+  scene.add( cylinderShadow );
 }
 
 function agregar_cubo(){
   // cubo
   var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
-  var cubeMaterial = new THREE.MeshLambertMaterial( { color: 'rgb(255,0,0)', emissive: 0x200000 } );
+  var cubeMaterial = new THREE.MeshLambertMaterial( { color: 'rgb(23,233,219)', emissive: 0x200000 } );
   cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
   cube.position.z = 0;
   scene.add( cube );
@@ -189,7 +189,7 @@ function agregar_textura_cubo()
             scene.add( cube );
             cubeShadow = new THREE.ShadowMesh( cube );
             scene.add( cubeShadow );
-              
+
 }
 
 function agregar_plano(){
@@ -201,7 +201,38 @@ function agregar_plano(){
   scene.add( groundMesh );
 }
 
+
+function onDocumentMouseMove( event ) {
+				event.preventDefault();
+				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+				raycaster.setFromCamera(mouse , camara);
+				interseccion = raycaster.intersectObjects( scene.children );
+				if ( interseccion.length > 0 ) {
+						switch ( interseccion[ 0 ].object.geometry.type ){
+								case 'PlaneBufferGeometry':
+								break;
+								default:
+										if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+										INTERSECTED = interseccion[ 0 ].object;
+										INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+										INTERSECTED.material.color.setHex( 0xff0000 );
+								break;
+						}
+						/*if ( INTERSECTED != interseccion[ 0 ].object ) {
+									if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+									INTERSECTED = interseccion[ 0 ].object;
+									INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+									INTERSECTED.material.color.setHex( 0xff0000 );
+						}*/
+				} else {
+						if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+						INTERSECTED = null;
+				}
+}
+
 function animacion() {
+	var interseccion;
 
   requestAnimationFrame( animacion );
 
