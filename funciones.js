@@ -141,7 +141,7 @@ function agregar_cilindro(){
   var cylinderGeometry = new THREE.CylinderGeometry( 0.3, 0.3, 2 );
   var cylinderMaterial = new THREE.MeshPhongMaterial( { color: 'rgb(0,200,255)', emissive: 0x000020 } );
   cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
-  cylinder.position.set(-4, -4, -4);
+  cylinder.position.set(-3, 2, 4);
   scene.add( cylinder );
 //sombra del cilindro
   cylinderShadow = new THREE.ShadowMesh( cylinder );
@@ -168,7 +168,7 @@ function agregar_cubo(){
   var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
   var cubeMaterial = new THREE.MeshLambertMaterial( { color: 'rgb(23,233,219)', emissive: 0x200000 } );
   cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
-  cube.position.z = 0;
+  cube.position.set(0,4,-4);
   scene.add( cube );
 	//sombra del cubo
   cubeShadow = new THREE.ShadowMesh( cube );
@@ -292,14 +292,14 @@ function animacion() {
 
   AnguloEnHorizontal += 0.5 * frameTime;
 
-  cube.position.x=0.5;
+  /*cube.position.x=0.5;
   cube.position.y=4;
 
   cylinder.position.x=-3;
   cylinder.position.y=2;
 
   torus.position.x=5;
-  torus.position.y=3;
+  torus.position.y=3;*/
 
 
 if ( AnguloEnHorizontal > TWO_PI )
