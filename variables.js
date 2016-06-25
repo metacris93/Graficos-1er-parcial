@@ -60,7 +60,7 @@ var scene = new THREE.Scene();
 
 var camara = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 100);
 
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({antialias:true});
 
 var plano;
 
@@ -106,4 +106,14 @@ var radio_esfera = 0.5;
 
 var raycaster; // para hacer el picking
 
-var mouse = new THREE.Vector2(), INTERSECTED;
+var mouse = new THREE.Vector2(), INTERSECTED, SELECTED;
+
+var offset = new THREE.Vector3();
+
+var intersection = new THREE.Vector3();
+
+var controls;
+
+var plane = new THREE.Plane();
+
+var objects = [];//contiene los objetos del plano los cuales son, la piramide, cilindro, etc.

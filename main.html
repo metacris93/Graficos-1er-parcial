@@ -11,8 +11,9 @@
   <script src='js/libs/dat.gui.min.js'></script>
   <script src='js/libs/stats.min.js'></script>
   <script src="js/objects/ShadowMesh.js"></script>
+  <script src="js/controls/TrackballControls.js"></script>
   <script type="text/javascript" src="variables.js"></script>
-  <script type="text/javascript" src="funciones.js"></script>
+
   <style>
       body{
           /* set margin to 0 and overflow to hidden, to go fullscreen */
@@ -23,15 +24,27 @@
   </style>
   <body>
       <div id="render"></div>
+      <script type="text/javascript" src="funciones.js"></script>
       <script type="text/javascript">
 
       $(function (){
           renderer.setSize(window.innerWidth, window.innerHeight);
-          renderer.setClearColor( 'rgb(200,230,220)' );//color de fondo186,228,218
+          renderer.setClearColor( 'rgb(200,230,220)' );
+          renderer.setPixelRatio( window.devicePixelRatio );
+          renderer.sortObjects = false;
           $('#render').append(renderer.domElement);
-          control_orbital = new THREE.OrbitControls(camara , renderer.domElement);
-          control_orbital.addEventListener( 'change', renderizar );
-          //renderer.shadowMapEnabled = true;
+          controls = new THREE.TrackballControls( camara );
+				  controls.rotateSpeed = 1.0;
+				  controls.zoomSpeed = 1.2;
+				  controls.panSpeed = 0.8;
+				  controls.noZoom = false;
+				  controls.noPan = false;
+				  controls.staticMoving = true;
+				  controls.dynamicDampingFactor = 0.3;
+          /*control_orbital = new THREE.OrbitControls(camara , renderer.domElement);
+          control_orbital.addEventListener( 'change', renderizar );*/
+          renderer.shadowMapEnabled = true;
+				  renderer.shadowMap.type = THREE.PCFShadowMap;
           crear_plano(80, 80,"");
           plano.rotation.x=-0.5*Math.PI;
           plano.position.x = 0;
@@ -47,9 +60,9 @@
           scene.add( plano );
           scene.add(planosimple);
 	        // se ubica la camara en el centro de la escena
-          camara.position.x = -5;//-30
+          camara.position.x = 0;
           camara.position.y = 5;
-          camara.position.z = 0;
+          camara.position.z = 10;
           camara.lookAt(scene.position);
 
           //iluminacion
@@ -65,15 +78,19 @@
 
           // Fin de iluminacion
   	   agregar_cubo();
+       objects.push(cube);
 
   	   agregar_cilindro();
+       objects.push(cylinder);
 
   	   agregar_toroide();
+       objects.push(torus);
 
   	   agregar_esfera();
+       objects.push(sphere);
 
        agregar_piramide();
-
+       objects.push(pyramid);
 
           gui_widget = new dat.GUI();
           var f1 = gui_widget.addFolder("Folder");
@@ -128,6 +145,8 @@
           f1.add(controlador , 'traslacionPiramide' , 0 , 4);
           raycaster = new THREE.Raycaster();
           document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+          document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+				  document.addEventListener( 'mouseup', onDocumentMouseUp, false );
 /*****************************************************************************/
 /******************** Agregar colores a los objetos **************************/
           var folder = gui_widget.addFolder('Objeto Colores');

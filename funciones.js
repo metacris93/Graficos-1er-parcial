@@ -177,7 +177,6 @@ function agregar_cubo(){
 
 function agregar_textura_cubo()
 {
-  // cubo textura
               scene.remove(cube);
               scene.remove(cubeShadow);
              //var texture1 = THREE.ImageUtils.loadTexture( 'image/tierra.jpg' );
@@ -201,34 +200,67 @@ function agregar_plano(){
   scene.add( groundMesh );
 }
 
-
 function onDocumentMouseMove( event ) {
 				event.preventDefault();
 				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 				raycaster.setFromCamera(mouse , camara);
-				interseccion = raycaster.intersectObjects( scene.children );
-				if ( interseccion.length > 0 ) {
-						switch ( interseccion[ 0 ].object.geometry.type ){
-								case 'PlaneBufferGeometry':
+				if ( SELECTED ) {
+					if ( raycaster.ray.intersectPlane( plane, intersection ) )
+							SELECTED.position.copy( intersection.sub( offset ) );
+					return;
+				}
+				var intersects = raycaster.intersectObjects( objects );
+				if ( intersects.length > 0 ) {
+					if ( INTERSECTED != intersects[ 0 ].object ) {
+						switch ( intersects[ 0 ].object.geometry.type ){
+								case 'PlaneBufferGeometry'://el plano no tiene que cambiar de color
 								break;
 								default:
 										if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
-										INTERSECTED = interseccion[ 0 ].object;
+										INTERSECTED = intersects[ 0 ].object;
 										INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
 										INTERSECTED.material.color.setHex( 0xff0000 );
+										plane.setFromNormalAndCoplanarPoint(
+											camara.getWorldDirection( plane.normal ),
+											INTERSECTED.position );
 								break;
 						}
-						/*if ( INTERSECTED != interseccion[ 0 ].object ) {
-									if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
-									INTERSECTED = interseccion[ 0 ].object;
-									INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
-									INTERSECTED.material.color.setHex( 0xff0000 );
-						}*/
+					}
+					$("body").css("cursor","pointer");
 				} else {
-						if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
-						INTERSECTED = null;
+					if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+					INTERSECTED = null;
+					$("body").css({'cursor':'auto'});
 				}
+}
+
+function onDocumentMouseDown(event){
+				event.preventDefault();
+				raycaster.setFromCamera( mouse, camara );
+				var intersects = raycaster.intersectObjects( objects );
+				if ( intersects.length > 0 ) {
+					controls.enabled = false;
+					SELECTED = intersects[ 0 ].object;
+					if ( raycaster.ray.intersectPlane( plane, intersection ) ) {
+						offset.copy( intersection ).sub( SELECTED.position );
+					}
+					$("body").css("cursor","move");
+				}
+}
+
+function onDocumentMouseUp(event){
+				event.preventDefault();
+				controls.enabled = true;
+				if ( INTERSECTED ) {
+					SELECTED = null;
+				}
+				$("body").css({'cursor':'auto'});
+}
+
+function render() {
+				controls.update();
+				renderer.render( scene, camara );
 }
 
 function animacion() {
@@ -273,22 +305,22 @@ function animacion() {
 if ( AnguloEnHorizontal > TWO_PI )
 	AnguloEnHorizontal -= TWO_PI;
 
-  cube.position.x     = Math.cos( AnguloEnHorizontal ) * controlador.traslacionCubo/2;
+  /*cube.position.x     = Math.cos( AnguloEnHorizontal ) * controlador.traslacionCubo/2;
 	cylinder.position.x = Math.sin( AnguloEnHorizontal ) * -controlador.traslacionCilindro/2;
 	torus.position.x    = Math.cos( AnguloEnHorizontal ) * controlador.traslacionToroide/2;
 	pyramid.position.x  = Math.sin(AnguloEnHorizontal)* controlador.traslacionPiramide/2-3;
-	sphere.position.x   = Math.cos(AnguloEnHorizontal)*controlador.traslacionEsfera/2+3;
+	sphere.position.x   = Math.cos(AnguloEnHorizontal)*controlador.traslacionEsfera/2+3;*/
 
 AnguloEnVertical += 1.5 * frameTime;
 
 if ( AnguloEnVertical > TWO_PI )
      AnguloEnVertical -= TWO_PI;
 
-cube.position.y = Math.sin( AnguloEnVertical ) * controlador.traslacionCubo/2+4;
+/*cube.position.y = Math.sin( AnguloEnVertical ) * controlador.traslacionCubo/2+4;
 cylinder.position.y = Math.sin( AnguloEnVertical ) * controlador.traslacionCilindro/4+2;
 torus.position.y = Math.cos( AnguloEnVertical ) * controlador.traslacionToroide/4 + 3.1;
 pyramid.position.y=Math.sin(AnguloEnVertical)* controlador.traslacionPiramide/4+3.7;
-sphere.position.y=Math.cos(AnguloEnHorizontal)*controlador.traslacionEsfera/4+3;
+sphere.position.y=Math.cos(AnguloEnHorizontal)*controlador.traslacionEsfera/4+3;*/
 
 
   cubeShadow.update( groundPlane, PosicionLuz );
@@ -297,5 +329,5 @@ sphere.position.y=Math.cos(AnguloEnHorizontal)*controlador.traslacionEsfera/4+3;
   sphereShadow.update( groundPlane, PosicionLuz );
   pyramidShadow.update( groundPlane, PosicionLuz);
 
-  renderer.render( scene, camara );
+  render();
 }
