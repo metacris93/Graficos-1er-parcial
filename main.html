@@ -101,11 +101,10 @@
 
          	var toggleTablero=f1.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
         	toggleTablero.onChange(function(value){
-
-        	if(value=="Simple")
-        		plano.visible=false;
-        	else
-        		plano.visible=true;
+            	if(value=="Simple")
+            		plano.visible=false;
+            	else
+            		plano.visible=true;
         	});
 
 		      var toggleTablero = f1.add(controlador,'Luz',["On","Off"]).listen();
@@ -253,8 +252,7 @@
             }
 
           });
-
-        // añadir textura a piramide
+/**************************** añadir textura a piramide ****************************/
           var toggleTablero = folder2.add(controlador,'TexturaPiramide',["On","Off"]).listen();
 
           toggleTablero.onChange(function(value){
