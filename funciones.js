@@ -94,13 +94,7 @@ function rotacionEscena(){
 	pivot4.add( mesh5 );
 	pivot6.add( mesh6 );
 	pivot7.add( mesh7 );
-	
-}
 
-
-function renderizar(){
-	requestAnimationFrame( renderizar );
-	renderer.render(scene, camara);
 }
 
 function agregar_piramide(){
@@ -328,7 +322,7 @@ function animacion() {
 
   requestAnimationFrame( animacion );
   //Rota elementos
-	if(RotaSce)	
+	if(RotaSce)
 	parent.rotation.y += 0.1;
 
   frameTime = clock.getDelta();

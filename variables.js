@@ -21,7 +21,7 @@ var Controlador = function(){
   this.TexturaToroide="Off";
   this.TexturaPiramide="Off";
   this.TexturaCilindro="Off";
-  this.Rotacion="Off";	
+  this.Rotacion="Off";
 
 };
 var colorEsfera = function(){

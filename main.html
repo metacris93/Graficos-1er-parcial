@@ -28,23 +28,8 @@
       <script type="text/javascript">
 
       $(function (){
-          renderer.setSize(window.innerWidth, window.innerHeight);
-          renderer.setClearColor( 'rgb(200,230,220)' );
-          renderer.setPixelRatio( window.devicePixelRatio );
-          renderer.sortObjects = false;
-          $('#render').append(renderer.domElement);
-          controls = new THREE.TrackballControls( camara );
-				  controls.rotateSpeed = 1.0;
-				  controls.zoomSpeed = 1.2;
-				  controls.panSpeed = 0.8;
-				  controls.noZoom = false;
-				  controls.noPan = false;
-				  controls.staticMoving = true;
-				  controls.dynamicDampingFactor = 0.3;
           /*control_orbital = new THREE.OrbitControls(camara , renderer.domElement);
           control_orbital.addEventListener( 'change', renderizar );*/
-          renderer.shadowMapEnabled = true;
-				  renderer.shadowMap.type = THREE.PCFShadowMap;
           crear_plano(80, 80,"");
           plano.rotation.x=-0.5*Math.PI;
           plano.position.x = 0;
@@ -100,7 +85,7 @@
               planosimple.material.color.setHex( value.replace("#", "0x") );
           });
 
-		rotacionEscena(); //Esta linea no deberia ir aqui, es solo para q vean la rotacion, debido al error de los controladores no coge en las lineas comentadas abajo
+		//rotacionEscena(); //Esta linea no deberia ir aqui, es solo para q vean la rotacion, debido al error de los controladores no coge en las lineas comentadas abajo
 
 		var toggleTablero=f1.add(controlador,'Rotacion',["On","Off"]).listen();
                 /*toggleTablero.onChange(function(value){
@@ -109,9 +94,9 @@
         		rotacionEscena();
 		RotaSce=true;
 		}
-                else 
-		RotaSce=false;                
-		
+                else
+		RotaSce=false;
+
         	});*/
 
          	var toggleTablero=f1.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
@@ -122,8 +107,6 @@
         	else
         		plano.visible=true;
         	});
-
-
 
 		      var toggleTablero = f1.add(controlador,'Luz',["On","Off"]).listen();
         	toggleTablero.onChange(function(value){
@@ -145,6 +128,22 @@
             			scene.remove(sphereShadow);
     			    }
         	});
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.setClearColor( 'rgb(200,230,220)' );
+          renderer.setPixelRatio( window.devicePixelRatio );
+          renderer.sortObjects = false;
+          renderer.shadowMap.enabled = true;
+				  renderer.shadowMap.type = THREE.PCFShadowMap;
+
+          document.getElementById("render").appendChild(renderer.domElement);
+          controls = new THREE.TrackballControls( camara , renderer.domElement );
+				  controls.rotateSpeed = 1.0;
+				  controls.zoomSpeed = 1.2;
+				  controls.panSpeed = 0.8;
+				  controls.noZoom = false;
+				  controls.noPan = false;
+				  controls.staticMoving = true;
+				  controls.dynamicDampingFactor = 0.3;
 
           f1.add(controlador , 'rotacionEsfera' , 0 , 6);
           f1.add(controlador , 'rotacionToroide' , 0 , 6);
@@ -158,9 +157,9 @@
           f1.add(controlador , 'traslacionCilindro' , 0 , 4);
           f1.add(controlador , 'traslacionPiramide' , 0 , 4);
           raycaster = new THREE.Raycaster();
-          document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-          document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-				  document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+          renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
+          renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
+				  renderer.domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
 /*****************************************************************************/
 /******************** Agregar colores a los objetos **************************/
           var folder = gui_widget.addFolder('Objeto Colores');
