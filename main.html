@@ -67,7 +67,7 @@
 
   	   agregar_cilindro();
        objects.push(cylinder);
-
+	
   	   agregar_toroide();
        objects.push(torus);
 
@@ -76,7 +76,7 @@
 
        agregar_piramide();
        objects.push(pyramid);
-
+       
           gui_widget = new dat.GUI();
           var f1 = gui_widget.addFolder("Folder");
           var control = f1.addColor(controlador , 'color').listen();
@@ -196,12 +196,13 @@
             if(value=="On"){
 
               agregar_Texture_esfera();
-
+		objects.push(sphere);
             }else{
 
               scene.remove(sphere);
               scene.remove(sphereShadow);
               agregar_esfera();
+              objects.push(sphere);
             }
 
           });
@@ -213,11 +214,12 @@
             if(value=="On"){
 
               agregar_textura_cubo();
-
+		objects.push(cube);
             }else{
               scene.remove(cube);
               scene.remove(cubeShadow);
               agregar_cubo();
+              objects.push(cube);
             }
 
           });
@@ -229,11 +231,13 @@
             if(value=="On"){
 
               agregar_textura_toroide();
-
+ 
+ 		objects.push(torus);
             }else{
               scene.remove(torus);
               scene.remove(torusShadow);
               agregar_toroide();
+               objects.push(torus);
             }
 
           });
@@ -246,11 +250,13 @@
             if(value=="On"){
 
               agregar_textura_cilindro();
-
+    
+ 		objects.push(cylinder);
             }else{
               scene.remove(cylinder);
               scene.remove(cylinderShadow);
               agregar_cilindro();
+               objects.push(cylinder);
             }
 
           });
@@ -263,11 +269,12 @@
             if(value=="On"){
 
               agregar_texture_piramide();
-
+		  objects.push(pyramid);
             }else{
               scene.remove(pyramid);
               scene.remove(pyramidShadow);
               agregar_piramide();
+                objects.push(pyramid);
             }
 
           });
