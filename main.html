@@ -85,8 +85,7 @@
               planosimple.material.color.setHex( value.replace("#", "0x") );
           });
 
-		//rotacionEscena(); //Esta linea no deberia ir aqui, es solo para q vean la rotacion, debido al error de los controladores no coge en las lineas comentadas abajo
-
+		
 		var toggleTablero=f1.add(controlador,'Rotacion',["On","Off"]).listen();
                 toggleTablero.onChange(function(value){
 
@@ -102,10 +101,12 @@
          	var toggleTablero=f1.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
         	toggleTablero.onChange(function(value){
 
-        	if(value=="Simple")
+        	if(value=="Simple"){
         		plano.visible=false;
-        	else
+			planosimple.visible=true;}
+        	else{
         		plano.visible=true;
+			planosimple.visible=false;}
         	});
 
 		      var toggleTablero = f1.add(controlador,'Luz',["On","Off"]).listen();
