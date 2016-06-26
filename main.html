@@ -67,7 +67,7 @@
 
   	   agregar_cilindro();
        objects.push(cylinder);
-
+	
   	   agregar_toroide();
        objects.push(torus);
 
@@ -76,7 +76,7 @@
 
        agregar_piramide();
        objects.push(pyramid);
-
+       
           gui_widget = new dat.GUI();
           var f1 = gui_widget.addFolder("Folder");
           var control = f1.addColor(controlador , 'color').listen();
@@ -85,8 +85,7 @@
               planosimple.material.color.setHex( value.replace("#", "0x") );
           });
 
-		//rotacionEscena(); //Esta linea no deberia ir aqui, es solo para q vean la rotacion, debido al error de los controladores no coge en las lineas comentadas abajo
-
+		
 		var toggleTablero=f1.add(controlador,'Rotacion',["On","Off"]).listen();
     toggleTablero.onChange(function(value){
         	if(value=="On"){
@@ -98,10 +97,20 @@
 
          	var toggleTablero=f1.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
         	toggleTablero.onChange(function(value){
+<<<<<<< HEAD
             	if(value=="Simple")
             		plano.visible=false;
             	else
             		plano.visible=true;
+=======
+
+        	if(value=="Simple"){
+        		plano.visible=false;
+			planosimple.visible=true;}
+        	else{
+        		plano.visible=true;
+			planosimple.visible=false;}
+>>>>>>> f0e0168019da542f885eeb31ebe87ee960e74002
         	});
 
 		      var toggleTablero = f1.add(controlador,'Luz',["On","Off"]).listen();
@@ -192,12 +201,13 @@
             if(value=="On"){
 
               agregar_Texture_esfera();
-
+		objects.push(sphere);
             }else{
 
               scene.remove(sphere);
               scene.remove(sphereShadow);
               agregar_esfera();
+              objects.push(sphere);
             }
 
           });
@@ -209,11 +219,12 @@
             if(value=="On"){
 
               agregar_textura_cubo();
-
+		objects.push(cube);
             }else{
               scene.remove(cube);
               scene.remove(cubeShadow);
               agregar_cubo();
+              objects.push(cube);
             }
 
           });
@@ -225,11 +236,13 @@
             if(value=="On"){
 
               agregar_textura_toroide();
-
+ 
+ 		objects.push(torus);
             }else{
               scene.remove(torus);
               scene.remove(torusShadow);
               agregar_toroide();
+               objects.push(torus);
             }
 
           });
@@ -242,11 +255,13 @@
             if(value=="On"){
 
               agregar_textura_cilindro();
-
+    
+ 		objects.push(cylinder);
             }else{
               scene.remove(cylinder);
               scene.remove(cylinderShadow);
               agregar_cilindro();
+               objects.push(cylinder);
             }
 
           });
@@ -258,11 +273,12 @@
             if(value=="On"){
 
               agregar_texture_piramide();
-
+		  objects.push(pyramid);
             }else{
               scene.remove(pyramid);
               scene.remove(pyramidShadow);
               agregar_piramide();
+                objects.push(pyramid);
             }
 
           });

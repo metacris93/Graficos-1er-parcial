@@ -321,7 +321,7 @@ function animacion() {
 	var interseccion;
 
   requestAnimationFrame( animacion );
-  //Rota elementos
+  //Rota elementos, subir el valor para ir mas 
 	if(RotaSce)
 	parent.rotation.y += 0.1;
 
