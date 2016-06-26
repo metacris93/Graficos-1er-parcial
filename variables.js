@@ -21,6 +21,7 @@ var Controlador = function(){
   this.TexturaToroide="Off";
   this.TexturaPiramide="Off";
   this.TexturaCilindro="Off";
+  this.Rotacion="Off";	
 
 };
 var colorEsfera = function(){
@@ -117,3 +118,7 @@ var controls;
 var plane = new THREE.Plane();
 
 var objects = [];//contiene los objetos del plano los cuales son, la piramide, cilindro, etc.
+
+var parent = new THREE.Object3D(); //padre q servira de "centro para la rotacion"
+
+var RotaSce=true; //Boolean q controla rotacion de la escena, debe ir false al inicio, esta en true solo para q vean la rotacion

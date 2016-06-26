@@ -39,9 +39,64 @@ function crear_plano(ancho , alto , imagen){
 			plano = new THREE.Mesh( geometria, material );
 			plano.receiveShadow=true;
 			plano.visible=false;
+			plano.name="planoajedrez";
+			planosimple.name="planosimple";
 		}
 
 }
+
+function rotacionEscena(){
+	scene.add( parent );
+
+	var pivot1 = new THREE.Object3D();
+	var pivot2 = new THREE.Object3D();
+	var pivot3 = new THREE.Object3D();
+        var pivot4 = new THREE.Object3D();
+	var pivot5 = new THREE.Object3D();
+	var pivot6 = new THREE.Object3D();
+	var pivot7 = new THREE.Object3D();
+
+	pivot1.rotation.y = 0;
+	pivot2.rotation.y = 0;
+	pivot3.rotation.y = 0;
+	pivot4.rotation.y = 0;
+	pivot5.rotation.y = 0;
+	pivot6.rotation.y = 0;
+	pivot7.rotation.y = 0;
+
+	parent.add( pivot1 );
+	parent.add( pivot2 );
+	parent.add( pivot3 );
+	parent.add( pivot4 );
+	parent.add( pivot5 );
+	parent.add( pivot6 );
+	parent.add( pivot7 );
+
+	var geometry = new THREE.SphereGeometry( radio_esfera, 20, 10 );
+	var material = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,55)', emissive: 0x222222 } );
+
+	var mesh1 = scene.getObjectByName("cilindro");
+	var mesh2 = scene.getObjectByName("toroide");
+	var mesh3 = scene.getObjectByName("esfera");
+	var mesh4 = scene.getObjectByName("piramide");
+	var mesh5 = scene.getObjectByName("planoajedrez");
+	var mesh6 = scene.getObjectByName("planosimple");
+	var mesh7 = scene.getObjectByName("cubo");
+
+	//mesh1.position.x = 5;
+	//mesh2.position.x = 5;
+	//mesh3.position.x = 5;
+
+	pivot1.add( mesh1 );
+	pivot2.add( mesh2 );
+	pivot3.add( mesh3 );
+	pivot4.add( mesh4 );
+	pivot4.add( mesh5 );
+	pivot6.add( mesh6 );
+	pivot7.add( mesh7 );
+	
+}
+
 
 function renderizar(){
 	requestAnimationFrame( renderizar );
@@ -58,6 +113,7 @@ function agregar_piramide(){
 	scene.add( pyramid );
 	pyramidShadow = new THREE.ShadowMesh( pyramid );
 	scene.add( pyramidShadow );
+	pyramid.name="piramide";
 }
 
 function agregar_texture_piramide(){
@@ -85,6 +141,7 @@ function agregar_esfera(){
 	//sombra esfera
   sphereShadow = new THREE.ShadowMesh( sphere );
   scene.add( sphereShadow );
+  sphere.name="esfera";
 }
 
 function agregar_Texture_esfera(){
@@ -117,6 +174,7 @@ function agregar_toroide(){
 	//sombra toroide
   torusShadow = new THREE.ShadowMesh( torus );
   scene.add( torusShadow );
+  torus.name="toroide";
 }
 
 function agregar_textura_toroide(){
@@ -146,6 +204,7 @@ function agregar_cilindro(){
 //sombra del cilindro
   cylinderShadow = new THREE.ShadowMesh( cylinder );
   scene.add( cylinderShadow );
+  cylinder.name="cilindro";
 }
 
 function agregar_textura_cilindro(){
@@ -173,6 +232,7 @@ function agregar_cubo(){
 	//sombra del cubo
   cubeShadow = new THREE.ShadowMesh( cube );
   scene.add( cubeShadow );
+  cube.name="cubo";
 }
 
 function agregar_textura_cubo()
@@ -267,6 +327,9 @@ function animacion() {
 	var interseccion;
 
   requestAnimationFrame( animacion );
+  //Rota elementos
+	if(RotaSce)	
+	parent.rotation.y += 0.1;
 
   frameTime = clock.getDelta();
 	var radio = controlador.radioEsfera;
