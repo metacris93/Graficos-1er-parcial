@@ -51,7 +51,7 @@ function rotacionEscena(){
 	var pivot1 = new THREE.Object3D();
 	var pivot2 = new THREE.Object3D();
 	var pivot3 = new THREE.Object3D();
-        var pivot4 = new THREE.Object3D();
+  var pivot4 = new THREE.Object3D();
 	var pivot5 = new THREE.Object3D();
 	var pivot6 = new THREE.Object3D();
 	var pivot7 = new THREE.Object3D();
@@ -60,16 +60,16 @@ function rotacionEscena(){
 	pivot2.rotation.y = 0;
 	pivot3.rotation.y = 0;
 	pivot4.rotation.y = 0;
-	pivot5.rotation.y = 0;
-	pivot6.rotation.y = 0;
+	//pivot5.rotation.y = 0;
+	//pivot6.rotation.y = 0;
 	pivot7.rotation.y = 0;
 
 	parent.add( pivot1 );
 	parent.add( pivot2 );
 	parent.add( pivot3 );
 	parent.add( pivot4 );
-	parent.add( pivot5 );
-	parent.add( pivot6 );
+	//parent.add( pivot5 );
+	//parent.add( pivot6 );
 	parent.add( pivot7 );
 
 	var geometry = new THREE.SphereGeometry( radio_esfera, 20, 10 );
@@ -79,8 +79,8 @@ function rotacionEscena(){
 	var mesh2 = scene.getObjectByName("toroide");
 	var mesh3 = scene.getObjectByName("esfera");
 	var mesh4 = scene.getObjectByName("piramide");
-	var mesh5 = scene.getObjectByName("planoajedrez");
-	var mesh6 = scene.getObjectByName("planosimple");
+	//var mesh5 = scene.getObjectByName("planoajedrez");
+	//var mesh6 = scene.getObjectByName("planosimple");
 	var mesh7 = scene.getObjectByName("cubo");
 
 	//mesh1.position.x = 5;
@@ -91,8 +91,8 @@ function rotacionEscena(){
 	pivot2.add( mesh2 );
 	pivot3.add( mesh3 );
 	pivot4.add( mesh4 );
-	pivot4.add( mesh5 );
-	pivot6.add( mesh6 );
+	//pivot5.add( mesh5 );
+	//pivot6.add( mesh6 );
 	pivot7.add( mesh7 );
 
 }
