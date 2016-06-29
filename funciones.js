@@ -293,6 +293,77 @@ function onDocumentMouseDown(event){
 				event.preventDefault();
 				raycaster.setFromCamera( mouse, camara );
 				var intersects = raycaster.intersectObjects( objects );
+				//Desde aqui agregué	**********************************************************************			
+				if(event.button==2){//si el click es derecho
+				
+				for( var i = 0; i < intersects.length; i++ ) {
+    				var intersection = intersects[ i ];
+    				var obj = intersection.object;
+    				switch(obj.name){
+				
+				case "toroide":
+				if(!ToroideRota){
+				controlador.rotacionToroide=4;
+				ToroideRota=true;
+				}
+				else{
+				controlador.rotacionToroide=0;
+				ToroideRota=false;
+				}
+				break;
+
+				case "cubo":
+				if(!CuboRota){
+				controlador.rotacionCubo=4;
+				CuboRota=true;
+				}
+				else{
+				controlador.rotacionCubo=0;
+				CuboRota=false;
+				}
+				break;	
+
+				case "piramide":
+				if(!PiramideRota){
+				controlador.rotacionPiramide=4;
+				PiramideRota=true;
+				}
+				else{
+				controlador.rotacionPiramide=0;
+				PiramideRota=false;
+				}
+				break;
+
+				case "cilindro":
+				if(!CilindroRota){
+				controlador.rotacionCilindro=4;
+				CilindroRota=true;
+				}
+				else{
+				controlador.rotacionCilindro=0;
+				CilindroRota=false;
+				}
+				break;	
+
+				case "esfera":
+				if(!EsferaRota){
+				controlador.rotacionEsfera=4;
+				EsferaRota=true;
+				}
+				else{
+				controlador.rotacionEsfera=0;
+				EsferaRota=false;
+				}
+				break;
+				default:
+				break;		
+				
+				}
+				
+  				}
+							
+				}//hasta aqui llega la agregacion **************************************************
+				
 				if ( intersects.length > 0 ) {
 					controls.enabled = false;
 					SELECTED = intersects[ 0 ].object;

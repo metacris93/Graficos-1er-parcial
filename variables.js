@@ -122,3 +122,13 @@ var objects = [];//contiene los objetos del plano los cuales son, la piramide, c
 var parent = new THREE.Object3D(); //padre q servira de "centro para la rotacion"
 
 var RotaSce=false; //Boolean q controla rotacion de la escena, debe ir false al inicio.
+
+var CuboRota=false;
+
+var ToroideRota=false;
+
+var PiramideRota=false;
+
+var CilindroRota=false;
+
+var EsferaRota=false;
