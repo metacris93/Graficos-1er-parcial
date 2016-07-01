@@ -209,7 +209,7 @@ function agregar_textura_cilindro(){
   var texture2 = THREE.ImageUtils.loadTexture( 'image/solido.jpg' );
   var cylinderMaterial = new THREE.MeshPhongMaterial( { map: texture2 } );
   cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
-  cylinder.position.set(-4, -4, -4);
+  cylinder.position.set(-3, 2, 4);
   scene.add( cylinder );
 //sombra del cilindro
   cylinderShadow = new THREE.ShadowMesh( cylinder );
@@ -238,7 +238,7 @@ function agregar_textura_cubo()
               texture2 = THREE.ImageUtils.loadTexture( 'image/cubo.jpg' );
                 var cubeMaterial = new THREE.MeshLambertMaterial( { map: texture2 } );
               cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
-              cube.position.z = 0;
+           cube.position.set(0,4,-4);
             scene.add( cube );
             cubeShadow = new THREE.ShadowMesh( cube );
             scene.add( cubeShadow );
@@ -351,10 +351,8 @@ function animacion() {
 
   /*cube.position.x=0.5;
   cube.position.y=4;
-
   cylinder.position.x=-3;
   cylinder.position.y=2;
-
   torus.position.x=5;
   torus.position.y=3;*/
 
