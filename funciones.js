@@ -45,58 +45,6 @@ function crear_plano(ancho , alto , imagen){
 
 }
 
-function rotacionEscena(){
-	scene.add( parent );
-
-	var pivot1 = new THREE.Object3D();
-	var pivot2 = new THREE.Object3D();
-	var pivot3 = new THREE.Object3D();
-  var pivot4 = new THREE.Object3D();
-	var pivot5 = new THREE.Object3D();
-	var pivot6 = new THREE.Object3D();
-	var pivot7 = new THREE.Object3D();
-
-	pivot1.rotation.y = 0;
-	pivot2.rotation.y = 0;
-	pivot3.rotation.y = 0;
-	pivot4.rotation.y = 0;
-	//pivot5.rotation.y = 0;
-	//pivot6.rotation.y = 0;
-	pivot7.rotation.y = 0;
-
-	parent.add( pivot1 );
-	parent.add( pivot2 );
-	parent.add( pivot3 );
-	parent.add( pivot4 );
-	//parent.add( pivot5 );
-	//parent.add( pivot6 );
-	parent.add( pivot7 );
-
-	var geometry = new THREE.SphereGeometry( radio_esfera, 20, 10 );
-	var material = new THREE.MeshPhongMaterial( { color: 'rgb(255,255,55)', emissive: 0x222222 } );
-
-	var mesh1 = scene.getObjectByName("cilindro");
-	var mesh2 = scene.getObjectByName("toroide");
-	var mesh3 = scene.getObjectByName("esfera");
-	var mesh4 = scene.getObjectByName("piramide");
-	//var mesh5 = scene.getObjectByName("planoajedrez");
-	//var mesh6 = scene.getObjectByName("planosimple");
-	var mesh7 = scene.getObjectByName("cubo");
-
-	//mesh1.position.x = 5;
-	//mesh2.position.x = 5;
-	//mesh3.position.x = 5;
-
-	pivot1.add( mesh1 );
-	pivot2.add( mesh2 );
-	pivot3.add( mesh3 );
-	pivot4.add( mesh4 );
-	//pivot5.add( mesh5 );
-	//pivot6.add( mesh6 );
-	pivot7.add( mesh7 );
-
-}
-
 function agregar_piramide(){
   // Piramide
 	var pyramidGeometry = new THREE.CylinderGeometry( 0, 1.2, 2, 4); //(desconocido,radio,altura,numero de caras laterales)
@@ -108,21 +56,6 @@ function agregar_piramide(){
 	pyramidShadow = new THREE.ShadowMesh( pyramid );
 	scene.add( pyramidShadow );
 	pyramid.name="piramide";
-}
-
-function agregar_texture_piramide(){
-  // Piramide
-  scene.remove(pyramid);
-  scene.remove(pyramidShadow);
-  var pyramidGeometry = new THREE.CylinderGeometry( 0, 1.2, 2, 4); //(desconocido,radio,altura,numero de caras laterales)
-  var texture1 = THREE.ImageUtils.loadTexture( 'image/arena.jpg' );
-  var pyramidMaterial = new THREE.MeshPhongMaterial( { map: texture1 } );
-  //sombra piramide
-  pyramid = new THREE.Mesh( pyramidGeometry, pyramidMaterial );
-  pyramid.position.set( -4, 1.5, 2 );
-  scene.add( pyramid );
-  pyramidShadow = new THREE.ShadowMesh( pyramid );
-  scene.add( pyramidShadow );
 }
 
 function agregar_esfera(){
@@ -138,26 +71,6 @@ function agregar_esfera(){
   sphere.name="esfera";
 }
 
-function agregar_Texture_esfera(){
-  // Texture de Esfera
-        scene.remove(sphere);
-        scene.remove(sphereShadow);
-        var texture1 = THREE.ImageUtils.loadTexture( 'image/tierra.jpg' );
-        var sphereMaterial = new THREE.MeshPhongMaterial( { map: texture1 } );
-        var sphereGeometry = new THREE.SphereGeometry( radio_esfera, 20, 10 );
-        //var geometry = new THREE.BoxGeometry( radio_esfera, 20, 10 );
-        sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-        //sphere.position.z=0;
-        sphere.position.set( 2, 2, -3 );
-
-        scene.add( sphere );
-        sphereShadow = new THREE.ShadowMesh( sphere );
-        scene.add( sphereShadow );
-
-}
-
-
-
 function agregar_toroide(){
   //Toroide
   var torusGeometry = new THREE.TorusGeometry( 1, 0.2, 10, 16, TWO_PI );
@@ -169,23 +82,6 @@ function agregar_toroide(){
   torusShadow = new THREE.ShadowMesh( torus );
   scene.add( torusShadow );
   torus.name="toroide";
-}
-
-function agregar_textura_toroide(){
-  //Toroide
-
-   scene.remove(torus);
-  scene.remove(torusShadow);
-
-  var torusGeometry = new THREE.TorusGeometry( 1, 0.2, 10, 16, TWO_PI );
-var texture1 = THREE.ImageUtils.loadTexture( 'image/flaretest.jpg' );
-  var torusMaterial = new THREE.MeshPhongMaterial( { map: texture1 } );
-  torus = new THREE.Mesh( torusGeometry, torusMaterial );
-  torus.position.set(2, 2, 2);
-  scene.add( torus );
-  //sombra toroide
-  torusShadow = new THREE.ShadowMesh( torus );
-  scene.add( torusShadow );
 }
 
 function agregar_cilindro(){
@@ -201,21 +97,6 @@ function agregar_cilindro(){
   cylinder.name="cilindro";
 }
 
-function agregar_textura_cilindro(){
-  // Cilindro
-  scene.remove(cylinder);
-  scene.remove(cylinderShadow);
-  var cylinderGeometry = new THREE.CylinderGeometry( 0.3, 0.3, 2 );
-  var texture2 = THREE.ImageUtils.loadTexture( 'image/solido.jpg' );
-  var cylinderMaterial = new THREE.MeshPhongMaterial( { map: texture2 } );
-  cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
-  cylinder.position.set(-3, 2, 4);
-  scene.add( cylinder );
-//sombra del cilindro
-  cylinderShadow = new THREE.ShadowMesh( cylinder );
-  scene.add( cylinderShadow );
-}
-
 function agregar_cubo(){
   // cubo
   var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
@@ -227,22 +108,6 @@ function agregar_cubo(){
   cubeShadow = new THREE.ShadowMesh( cube );
   scene.add( cubeShadow );
   cube.name="cubo";
-}
-
-function agregar_textura_cubo()
-{
-              scene.remove(cube);
-              scene.remove(cubeShadow);
-             //var texture1 = THREE.ImageUtils.loadTexture( 'image/tierra.jpg' );
-             var cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
-              texture2 = THREE.ImageUtils.loadTexture( 'image/cubo.jpg' );
-                var cubeMaterial = new THREE.MeshLambertMaterial( { map: texture2 } );
-              cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
-           cube.position.set(0,4,-4);
-            scene.add( cube );
-            cubeShadow = new THREE.ShadowMesh( cube );
-            scene.add( cubeShadow );
-
 }
 
 function agregar_plano(){
@@ -271,6 +136,7 @@ function onDocumentMouseMove( event ) {
 								case 'PlaneBufferGeometry'://el plano no tiene que cambiar de color
 								break;
 								default:
+										objeto_seleccionado = intersects[ 0 ].object;
 										if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
 										INTERSECTED = intersects[ 0 ].object;
 										INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
@@ -293,9 +159,11 @@ function onDocumentMouseDown(event){
 				event.preventDefault();
 				raycaster.setFromCamera( mouse, camara );
 				var intersects = raycaster.intersectObjects( objects );
+
 				if ( intersects.length > 0 ) {
 					controls.enabled = false;
 					SELECTED = intersects[ 0 ].object;
+					objeto_seleccionado = intersects[ 0 ].object;
 					if ( raycaster.ray.intersectPlane( plane, intersection ) ) {
 						offset.copy( intersection ).sub( SELECTED.position );
 					}
@@ -312,6 +180,7 @@ function onDocumentMouseUp(event){
 				$("body").css({'cursor':'auto'});
 }
 
+
 function render() {
 				controls.update();
 				renderer.render( scene, camara );
@@ -321,9 +190,23 @@ function animacion() {
 	var interseccion;
 
   requestAnimationFrame( animacion );
-  //Rota elementos, subir el valor para ir mas 
-	if(RotaSce)
-	parent.rotation.y += 0.1;
+  //Rota elementos, subir el valor para ir mas
+	/*if(RotaSce)
+		parent.rotation.y += 0.1;*/
+  if(rotacion_cilindro)
+		parent_cilindro.rotation.y += 0.1;
+
+	if(rotacion_cubo)
+		parent_cubo.rotation.y += 0.1;
+
+	if(rotacion_esfera)
+		parent_esfera.rotation.y += 0.1;
+
+	if(rotacion_piramide)
+		parent_piramide.rotation.y += 0.1;
+
+	if(rotacion_toroide)
+		parent_toroide.rotation.y += 0.1;
 
   frameTime = clock.getDelta();
 	var radio = controlador.radioEsfera;

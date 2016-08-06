@@ -119,6 +119,69 @@ var plane = new THREE.Plane();
 
 var objects = [];//contiene los objetos del plano los cuales son, la piramide, cilindro, etc.
 
-var parent = new THREE.Object3D(); //padre q servira de "centro para la rotacion"
+//var parent = new THREE.Object3D(); //padre q servira de "centro para la rotacion"
 
-var RotaSce=false; //Boolean q controla rotacion de la escena, debe ir false al inicio.
+//var RotaSce=false; //Boolean q controla rotacion de la escena, debe ir false al inicio.
+
+var CuboRota=false;
+
+var ToroideRota=false;
+
+var PiramideRota=false;
+
+var CilindroRota=false;
+
+var EsferaRota=false;
+
+var objeto_seleccionado = null;
+
+var pivote_cubo = new THREE.Object3D();
+pivote_cubo.rotation.y = 0;
+var pivote_cilindro = new THREE.Object3D();
+pivote_cilindro.rotation.y = 0;
+var pivote_piramide = new THREE.Object3D();
+pivote_piramide.rotation.y = 0;
+var pivote_esfera = new THREE.Object3D();
+pivote_esfera.rotation.y = 0;
+var pivote_toroide = new THREE.Object3D();
+pivote_toroide.rotation.y = 0;
+
+var rotacion_cubo = false;
+
+var rotacion_cilindro = false;
+
+var rotacion_piramide = false;
+
+var rotacion_esfera = false;
+
+var rotacion_toroide = false;
+
+var parent_cubo = new THREE.Object3D();
+
+var parent_piramide= new THREE.Object3D();
+
+var parent_cilindro = new THREE.Object3D();
+
+var parent_esfera = new THREE.Object3D();
+
+var parent_toroide = new THREE.Object3D();
+
+parent_cubo.add(pivote_cubo);
+
+parent_piramide.add(pivote_piramide);
+
+parent_esfera.add(pivote_esfera);
+
+parent_cilindro.add(pivote_cilindro);
+
+parent_toroide.add(pivote_toroide);
+
+scene.add(parent_cubo);
+
+scene.add(parent_esfera);
+
+scene.add(parent_cilindro);
+
+scene.add(parent_toroide);
+
+scene.add(parent_piramide);

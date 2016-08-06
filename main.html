@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -67,7 +68,7 @@
 
   	   agregar_cilindro();
        objects.push(cylinder);
-	
+
   	   agregar_toroide();
        objects.push(torus);
 
@@ -76,7 +77,7 @@
 
        agregar_piramide();
        objects.push(pyramid);
-       
+
           gui_widget = new dat.GUI();
           var f1 = gui_widget.addFolder("Folder");
           var control = f1.addColor(controlador , 'color').listen();
@@ -85,32 +86,14 @@
               planosimple.material.color.setHex( value.replace("#", "0x") );
           });
 
-		
-		var toggleTablero=f1.add(controlador,'Rotacion',["On","Off"]).listen();
-    toggleTablero.onChange(function(value){
-        	if(value=="On"){
-        		rotacionEscena();
-        		RotaSce=true;
-        	}else
-        		RotaSce=false;
-    });
-
          	var toggleTablero=f1.add(controlador,'Piso',["Ajedrez","Simple"]).listen();
         	toggleTablero.onChange(function(value){
-<<<<<<< HEAD
-            	if(value=="Simple")
-            		plano.visible=false;
-            	else
-            		plano.visible=true;
-=======
-
         	if(value=="Simple"){
-        		plano.visible=false;
-			planosimple.visible=true;}
-        	else{
-        		plano.visible=true;
-			planosimple.visible=false;}
->>>>>>> f0e0168019da542f885eeb31ebe87ee960e74002
+        		    plano.visible=false;
+      			    planosimple.visible=true;
+          }else{
+              	plano.visible=true;
+      			    planosimple.visible=false;}
         	});
 
 		      var toggleTablero = f1.add(controlador,'Luz',["On","Off"]).listen();
@@ -161,7 +144,17 @@
           f1.add(controlador , 'traslacionCubo' , 0 , 4);
           f1.add(controlador , 'traslacionCilindro' , 0 , 4);
           f1.add(controlador , 'traslacionPiramide' , 0 , 4);
-          
+
+          pivote_cubo.add(cube);
+
+          pivote_piramide.add(pyramid);
+
+          pivote_esfera.add(sphere);
+
+          pivote_toroide.add(torus);
+
+          pivote_cilindro.add(cylinder);
+
           raycaster = new THREE.Raycaster();
           renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
           renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
@@ -193,97 +186,93 @@
 /***********************************************************************/
 /********************  cambiar Textura a Objetos **********************/
             // añadir textura a sphera
-          var folder2 = gui_widget.addFolder('Texture Obj');
+          var folder2 = gui_widget.addFolder('Textura');
           var toggleTablero = folder2.add(controlador,'Texturaesfera',["On","Off"]).listen();
 
           toggleTablero.onChange(function(value){
-
-            if(value=="On"){
-
-              agregar_Texture_esfera();
-		objects.push(sphere);
-            }else{
-
-              scene.remove(sphere);
-              scene.remove(sphereShadow);
-              agregar_esfera();
-              objects.push(sphere);
-            }
-
+              var loader  = new THREE.TextureLoader();
+              loader.load('image/tierra.jpg',function(textura){
+                  var material_textura = new THREE.MeshBasicMaterial({map: textura});
+                  sphere.material = material_textura;
+              });
           });
+
+
             //añadir textura a cubo
             var toggleTablero = folder2.add(controlador,'Texturacubo',["On","Off"]).listen();
-
-          toggleTablero.onChange(function(value){
-
-            if(value=="On"){
-
-              agregar_textura_cubo();
-		objects.push(cube);
-            }else{
-              scene.remove(cube);
-              scene.remove(cubeShadow);
-              agregar_cubo();
-              objects.push(cube);
-            }
-
+            toggleTablero.onChange(function(value){
+                  var loader  = new THREE.TextureLoader();
+                  loader.load('image/cubo.jpg',function(textura){
+                      var material_textura = new THREE.MeshBasicMaterial({map: textura});
+                      cube.material = material_textura;
+                  });
           });
                 //añadir textura a toroide
           var toggleTablero = folder2.add(controlador,'TexturaToroide',["On","Off"]).listen();
 
           toggleTablero.onChange(function(value){
-
-            if(value=="On"){
-
-              agregar_textura_toroide();
- 
- 		objects.push(torus);
-            }else{
-              scene.remove(torus);
-              scene.remove(torusShadow);
-              agregar_toroide();
-               objects.push(torus);
-            }
-
+            var loader  = new THREE.TextureLoader();
+            loader.load('image/flaretest.jpg',function(textura){
+                var material_textura = new THREE.MeshBasicMaterial({map: textura});
+                torus.material = material_textura;
+            });
           });
 
                //añadir textura a cilindro
           var toggleTablero = folder2.add(controlador,'TexturaCilindro',["On","Off"]).listen();
 
           toggleTablero.onChange(function(value){
-
-            if(value=="On"){
-
-              agregar_textura_cilindro();
-    
- 		objects.push(cylinder);
-            }else{
-              scene.remove(cylinder);
-              scene.remove(cylinderShadow);
-              agregar_cilindro();
-               objects.push(cylinder);
-            }
-
+            var loader  = new THREE.TextureLoader();
+            loader.load('image/solido.jpg',function(textura){
+                var material_textura = new THREE.MeshBasicMaterial({map: textura});
+                cylinder.material = material_textura;
+            });
           });
 /**************************** añadir textura a piramide ****************************/
           var toggleTablero = folder2.add(controlador,'TexturaPiramide',["On","Off"]).listen();
 
           toggleTablero.onChange(function(value){
-
-            if(value=="On"){
-
-              agregar_texture_piramide();
-		  objects.push(pyramid);
-            }else{
-              scene.remove(pyramid);
-              scene.remove(pyramidShadow);
-              agregar_piramide();
-                objects.push(pyramid);
-            }
-
+            var loader  = new THREE.TextureLoader();
+            loader.load('image/arena.jpg',function(textura){
+                var material_textura = new THREE.MeshBasicMaterial({map: textura});
+                pyramid.material = material_textura;
+            });
           });
 
-               animacion();
+          animacion();
+          $(document).keypress(function(evento){
+          		//charCode de R es 114
+              if(evento.charCode == 114){
+                var nombre = objeto_seleccionado.name;
+
+                switch(nombre){
+                    case "cubo":
+                        rotacion_cubo = true;
+                        rotacion_piramide = rotacion_cilindro = rotacion_esfera = rotacion_toroide = false;
+                    break;
+                    case "piramide":
+                        rotacion_piramide = true;
+                        rotacion_cubo = rotacion_cilindro = rotacion_esfera = rotacion_toroide = false;
+                    break;
+                    case "esfera":
+                        rotacion_esfera = true;
+                        rotacion_piramide = rotacion_cilindro = rotacion_cubo = rotacion_toroide = false;
+                    break;
+                    case "toroide":
+                        rotacion_toroide = true;
+                        rotacion_piramide = rotacion_cilindro = rotacion_esfera = rotacion_cubo = false;
+                    break;
+                    case "cilindro":
+                        rotacion_cilindro = true;
+                        rotacion_piramide = rotacion_cubo = rotacion_esfera = rotacion_toroide = false;
+                    break;
+                }
+              }
+          });
+
+          $(document).keyup(function(){
+              rotacion_piramide = rotacion_cilindro = rotacion_esfera = rotacion_toroide = rotacion_cubo = false;
+          });
       });
 
       window.addEventListener( 'resize', function () {
